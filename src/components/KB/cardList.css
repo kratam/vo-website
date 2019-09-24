@@ -1,0 +1,8 @@
+.card-list {
+  justify-content: space-evenly;
+}
+
+.kb-card {
+  max-width: 300px !important;
+  min-width: 280px !important;
+}

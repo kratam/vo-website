@@ -1,0 +1,18 @@
+.kb-body-paper {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.kb-body img {
+  max-width: 100%;
+}
+
+.kb-cards-holder {
+  padding-top: 20px !important;
+}
+
+.breadcrumbs {
+  font-size: 14px !important;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  margin-bottom: -12px !important;
+}

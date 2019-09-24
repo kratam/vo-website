@@ -1,0 +1,25 @@
+.kb-card-container {
+  width: 100%;
+}
+
+a:link {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.card-title {
+  text-decoration: none !important;
+}
+
+.card-cover {
+  width: 100%;
+  object-fit: cover;
+  height: 140px;
+}

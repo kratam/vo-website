@@ -1,0 +1,47 @@
+.search-container {
+  padding: 40px 0;
+}
+
+.ais-Hits {
+  position: relative;
+}
+
+.ais-Highlight {
+  display: block;
+}
+
+.ais-Highlight-highlighted {
+  background-color: #2158ac;
+  color: white;
+  font-style: normal;
+}
+
+.ais-Hits-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 999;
+  width: 100%
+}
+
+.search-hit-paper {
+  padding: 8px 16px;
+  margin-top: 2px;
+  color: #3f3f3f !important;
+}
+
+.search-paper {
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  margin-left: 8px;
+  flex: 1;
+}
+
+.search-icon {
+  padding: 10px;
+}

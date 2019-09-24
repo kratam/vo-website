@@ -1,40 +1,45 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import _ from 'lodash'
-import { Card } from '@material-ui/core'
-import BlogPostCard from '../components/blogpost'
+import { Container } from '@material-ui/core'
+import KBCards from '../components/KB/cardList'
+import Search from '../components/KB/search'
+import './index.css'
 
 export default function BlogPost(props) {
-  const posts = _.get(props, 'data.allPrismicPost.edges')
   const categories = _.get(props, 'data.allPrismicKbCategory.edges')
+  const noCoverImg = _.get(props, 'data.allImageSharp.edges[0].node')
   return (
     <div>
       <Helmet>
         <title>Online Vendégkönyv!</title>
       </Helmet>
-      {posts.map(({ node: post }) => (
-        <Link key={post.uid} to={`/blog/${post.uid}`}>
-          <BlogPostCard post={post} />
-        </Link>
-      ))}
-      {categories.map(({ node: category }) => (
-        <Card key={category.uid}>{category.data.name.text}</Card>
-      ))}
+      <Container maxWidth="md">
+        <div className="index-search-container">
+          <Search />
+        </div>
+        <div className="kb-card-holder">
+          <KBCards
+            categories={categories}
+            noCoverImg={noCoverImg}
+            pathname="/kb"
+          />
+        </div>
+      </Container>
     </div>
   )
 }
 
 export const pageQuery = graphql`
   query IndexPage {
-    allPrismicPost(limit: 10) {
+    allImageSharp(
+      filter: { original: { src: { regex: "/static/no-cover/" } } }
+    ) {
       edges {
         node {
-          uid
-          data {
-            title {
-              html
-            }
+          fluid {
+            srcSet
           }
         }
       }
@@ -46,10 +51,15 @@ export const pageQuery = graphql`
         node {
           uid
           data {
-            parent_category {
-              uid
+            order
+            icon
+            cover {
+              url
             }
             name {
+              text
+            }
+            description {
               text
             }
           }
