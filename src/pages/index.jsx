@@ -1,51 +1,60 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { graphql } from "gatsby";
-import Layout from "../layout";
-import PostListing from "../components/PostListing/PostListing";
-import SEO from "../components/SEO/SEO";
-import config from "../../data/SiteConfig";
+import React from 'react'
+import Helmet from 'react-helmet'
+import { graphql, Link } from 'gatsby'
+import _ from 'lodash'
+import { Card } from '@material-ui/core'
+import BlogPostCard from '../components/blogpost'
 
-class Index extends React.Component {
-  render() {
-    const postEdges = this.props.data.allMarkdownRemark.edges;
-    return (
-      <Layout>
-        <div className="index-container">
-          <Helmet title={config.siteTitle} />
-          <SEO />
-          <PostListing postEdges={postEdges} />
-        </div>
-      </Layout>
-    );
-  }
+export default function BlogPost(props) {
+  const posts = _.get(props, 'data.allPrismicPost.edges')
+  const categories = _.get(props, 'data.allPrismicKbCategory.edges')
+  return (
+    <div>
+      <Helmet>
+        <title>Online Vendégkönyv!</title>
+      </Helmet>
+      {posts.map(({ node: post }) => (
+        <Link key={post.uid} to={`/blog/${post.uid}`}>
+          <BlogPostCard post={post} />
+        </Link>
+      ))}
+      {categories.map(({ node: category }) => (
+        <Card key={category.uid}>{category.data.name.text}</Card>
+      ))}
+    </div>
+  )
 }
 
-export default Index;
-
-/* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query IndexQuery {
-    allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [fields___date], order: DESC }
+  query IndexPage {
+    allPrismicPost(limit: 10) {
+      edges {
+        node {
+          uid
+          data {
+            title {
+              html
+            }
+          }
+        }
+      }
+    }
+    allPrismicKbCategory(
+      filter: { data: { parent_category: { uid: { eq: null } } } }
     ) {
       edges {
         node {
-          fields {
-            slug
-            date
-          }
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            tags
-            cover
-            date
+          uid
+          data {
+            parent_category {
+              uid
+            }
+            name {
+              text
+            }
           }
         }
       }
     }
   }
-`;
+`
