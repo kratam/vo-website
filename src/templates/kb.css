@@ -1,6 +1,7 @@
 .kb-body-paper {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .kb-body img {

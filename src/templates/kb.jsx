@@ -2,13 +2,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
-import {
-  Breadcrumbs,
-  Paper,
-  Typography,
-  Container,
-  Grid,
-} from '@material-ui/core'
+import { Breadcrumbs, Paper, Typography, Container } from '@material-ui/core'
 import _ from 'lodash'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
@@ -47,7 +41,7 @@ export default function KnowledgeBaseTemplate(props) {
   return (
     <div>
       <Helmet>
-        <title>Tudásbázis</title>
+        <title>{category.name.text}</title>
       </Helmet>
       <Search />
       <Container maxWidth="md">
@@ -61,12 +55,14 @@ export default function KnowledgeBaseTemplate(props) {
             />
           </div>
         )}
-        <Paper className="kb-body-paper">
-          <Typography
-            dangerouslySetInnerHTML={{ __html: category.body.html }}
-            className="kb-body"
-          />
-        </Paper>
+        {category.body.html && (
+          <Paper className="kb-body-paper">
+            <Typography
+              dangerouslySetInnerHTML={{ __html: category.body.html }}
+              className="kb-body"
+            />
+          </Paper>
+        )}
       </Container>
     </div>
   )
