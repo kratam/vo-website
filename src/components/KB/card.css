@@ -1,5 +1,7 @@
 .kb-card-container {
   width: 100%;
+  max-width: 300px;
+  justify-self: center;
 }
 
 .kb-card-actionarea {

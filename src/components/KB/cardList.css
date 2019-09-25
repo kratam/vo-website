@@ -2,8 +2,6 @@
   justify-content: space-evenly;
 }
 
-.kb-card {
-  /* max-width: 300px !important;
-  min-width: 280px !important; */
-  max-width: 324px !important;
+.kb-cardlist-griditem {
+  max-width: 340px !important;
 }
