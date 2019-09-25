@@ -3,6 +3,7 @@
 }
 
 .kb-card {
-  max-width: 300px !important;
-  min-width: 280px !important;
+  /* max-width: 300px !important;
+  min-width: 280px !important; */
+  max-width: 324px !important;
 }

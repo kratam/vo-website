@@ -9,6 +9,7 @@ import { RichText } from 'prismic-reactjs'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
 import Breadcrumbs from '../components/KB/breadcrumbs'
+import Background from '../components/background'
 import htmlSerializer from '../utils/htmlSerialize'
 import './kb.css'
 
@@ -21,15 +22,30 @@ export default function KnowledgeBaseTemplate(props) {
     category.last_publication_date,
   ).toLocaleDateString()
   const categories = get(props, 'data.subCategories.edges', [])
-  const noCoverImg = get(props, 'data.noCover.edges[0].node')
+  const noCoverImg = get(props, 'data.noCoverImg')
   const allCategories = get(props, 'data.allCategories.edges', [])
   const kbPathArray = get(props, 'pageContext.mypath').split('/')
+  const seoPath = kbPathArray
+    .map(
+      path => allCategories.find(c => c.node.uid === path).node.data.name.text,
+    )
+    .join(' > ')
+
   return (
     <div>
       <Helmet>
-        <title>{category.data.name.text}</title>
+        <title>
+          {`${category.data.name.text} - ${props.data.site.siteMetadata.title}`}
+        </title>
+        <meta
+          name="description"
+          content={`${seoPath} > ${category.data.description.text ||
+            category.data.name.text}`}
+        />
       </Helmet>
-      <Search />
+      <Background>
+        <Search />
+      </Background>
       <Container maxWidth="md">
         <Breadcrumbs kbPathArray={kbPathArray} allCategories={allCategories} />
         {categories.length > 0 && (
@@ -56,12 +72,12 @@ export default function KnowledgeBaseTemplate(props) {
                 </>
               )}
             </Typography>
-            <div className="kb-body">
+            <article className="kb-body">
               <RichText
                 render={category.data.body.raw}
                 htmlSerializer={htmlSerializer}
               />
-            </div>
+            </article>
           </Paper>
         )}
       </Container>
@@ -71,15 +87,9 @@ export default function KnowledgeBaseTemplate(props) {
 
 export const pageQuery = graphql`
   query KBCategoryByUid($uid: String) {
-    noCover: allImageSharp(
-      filter: { original: { src: { regex: "/static/no-cover/" } } }
-    ) {
-      edges {
-        node {
-          fluid {
-            srcSet
-          }
-        }
+    site {
+      siteMetadata {
+        title
       }
     }
     category: prismicKbCategory(uid: { eq: $uid }) {
@@ -87,6 +97,9 @@ export const pageQuery = graphql`
       last_publication_date
       data {
         name {
+          text
+        }
+        description {
           text
         }
         body {
@@ -132,7 +145,13 @@ export const pageQuery = graphql`
           data {
             order
             cover {
-              url
+              localFile {
+                childImageSharp {
+                  fixed(width: 300) {
+                    ...GatsbyImageSharpFixed
+                  }
+                }
+              }
             }
             name {
               text

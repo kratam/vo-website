@@ -9,6 +9,8 @@ const queries = require('./src/utils/algolia')
 module.exports = {
   pathPrefix: config.pathPrefix === '' ? '/' : config.pathPrefix,
   siteMetadata: {
+    title: config.siteTitle,
+    description: config.siteDescription,
     siteUrl: urljoin(config.siteUrl, config.pathPrefix),
   },
   plugins: [
@@ -63,9 +65,9 @@ module.exports = {
         // provided to the function, as seen below. This allows you to use
         // different logic for each field if necessary.
         // This defaults to always return true.
-        // shouldNormalizeImage: ({ node, key, value }) => {
-        //   // Return true to normalize the image or false to skip.
-        // },
+        shouldNormalizeImage: (/* { node, key, value } */) => {
+          return true
+        },
       },
     },
     'gatsby-plugin-react-helmet',
@@ -84,13 +86,6 @@ module.exports = {
       options: {
         name: 'assets',
         path: `${__dirname}/static/`,
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'posts',
-        path: `${__dirname}/content/`,
       },
     },
     {
@@ -139,18 +134,18 @@ module.exports = {
         background_color: config.backgroundColor,
         theme_color: config.themeColor,
         display: 'minimal-ui',
-        icons: [
-          {
-            src: '/logos/logo-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/logos/logo-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
+        // icons: [
+        //   {
+        //     src: '/logos/logo-192x192.png',
+        //     sizes: '192x192',
+        //     type: 'image/png',
+        //   },
+        //   {
+        //     src: '/logos/logo-512x512.png',
+        //     sizes: '512x512',
+        //     type: 'image/png',
+        //   },
+        // ],
       },
     },
     'gatsby-plugin-offline',

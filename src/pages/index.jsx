@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
@@ -5,43 +6,36 @@ import get from 'lodash/get'
 import { Container } from '@material-ui/core'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
+import Background from '../components/background'
 import './index.css'
 
 export default function BlogPost(props) {
   const categories = get(props, 'data.allPrismicKbCategory.edges')
-  const noCoverImg = get(props, 'data.allImageSharp.edges[0].node')
   return (
     <div>
       <Helmet>
-        <title>Online Vendégkönyv!</title>
+        <title>{props.data.site.siteMetadata.title}</title>
       </Helmet>
+      <Background>
+        <Container maxWidth="md">
+          <div className="index-search-container">
+            <Search />
+          </div>
+        </Container>
+      </Background>
       <Container maxWidth="md">
-        <div className="index-search-container">
-          <Search />
-        </div>
         <div className="kb-card-holder">
-          <KBCards
-            categories={categories}
-            noCoverImg={noCoverImg}
-            pathname="/kb"
-          />
+          <KBCards categories={categories} pathname="/kb" />
         </div>
       </Container>
     </div>
   )
 }
-
 export const pageQuery = graphql`
   query IndexPage {
-    allImageSharp(
-      filter: { original: { src: { regex: "/static/no-cover/" } } }
-    ) {
-      edges {
-        node {
-          fluid {
-            srcSet
-          }
-        }
+    site {
+      siteMetadata {
+        title
       }
     }
     allPrismicKbCategory(
@@ -52,9 +46,14 @@ export const pageQuery = graphql`
           uid
           data {
             order
-            icon
             cover {
-              url
+              localFile {
+                childImageSharp {
+                  fixed(width: 300) {
+                    ...GatsbyImageSharpFixed
+                  }
+                }
+              }
             }
             name {
               text

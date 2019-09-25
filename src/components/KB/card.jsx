@@ -5,19 +5,35 @@ import {
   CardContent,
   Typography,
 } from '@material-ui/core'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image/withIEPolyfill'
+import get from 'lodash/get'
 import './card.css'
 
-export default function KBCard({ data, noCoverImg, uid, pathname }) {
+export default function KBCard({ data, uid, pathname }) {
+  const localData = useStaticQuery(graphql`
+    query KBCardQuery {
+      noCoverImg: file(relativePath: { eq: "no-cover.jpg" }) {
+        childImageSharp {
+          fixed(width: 300) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+    }
+  `)
   return (
     <Card className="kb-card-container">
       <Link to={`${pathname}/${uid}`}>
         <CardActionArea className="kb-card-actionarea">
-          <img
-            className="card-cover"
-            alt={data.name.text}
-            src={data.cover.url || undefined}
-            srcSet={data.cover.url ? undefined : noCoverImg.fluid.srcSet}
+          <Img
+            fixed={
+              get(data, 'cover.localFile.childImageSharp.fixed') ||
+              get(localData, 'noCoverImg.childImageSharp.fixed')
+            }
+            objectFit="cover"
+            objectPosition="50% 50%"
+            style={{ height: 140 }}
           />
           <CardContent>
             <Typography gutterBottom variant="h6" className="card-title">
