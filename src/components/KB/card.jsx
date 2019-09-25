@@ -12,7 +12,7 @@ export default function KBCard({ data, noCoverImg, uid, pathname }) {
   return (
     <Card className="kb-card-container">
       <Link to={`${pathname}/${uid}`}>
-        <CardActionArea>
+        <CardActionArea className="kb-card-actionarea">
           <img
             className="card-cover"
             alt={data.name.text}
@@ -20,12 +20,7 @@ export default function KBCard({ data, noCoverImg, uid, pathname }) {
             srcSet={data.cover.url ? undefined : noCoverImg.fluid.srcSet}
           />
           <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="h2"
-              className="card-title"
-            >
+            <Typography gutterBottom variant="h6" className="card-title">
               {data.name.text}
             </Typography>
             <Typography

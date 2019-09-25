@@ -2,6 +2,18 @@
   width: 100%;
 }
 
+.kb-card-actionarea {
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 560px) {
+  .kb-card-actionarea {
+    min-height: 200px;
+  }
+}
+
 a:link {
   color: inherit;
   background-color: transparent;
@@ -15,7 +27,7 @@ a:visited {
 }
 
 .card-title {
-  text-decoration: none !important;
+  line-height: 110% !important;
 }
 
 .card-cover {
