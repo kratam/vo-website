@@ -3,7 +3,7 @@
 }
 
 .kb-card-actionarea {
-  min-height: 290px;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
 }

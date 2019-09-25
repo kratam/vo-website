@@ -9,7 +9,7 @@ export default function CardList(props) {
   let { categories } = props
   categories = sortBy(categories, o => o.node.data.order)
   return (
-    <Grid container spacing={3} justify="space-around">
+    <Grid container spacing={5} justify="space-around">
       {categories.map(({ node }) => (
         <Grid item xs key={node.uid} className="kb-card">
           <KBCard {...node} pathname={pathname} />
