@@ -56,7 +56,7 @@ const Hit = ({ hit }) => {
 const ResultsComp = ({ searchState, searchResults }) => {
   if (!searchState.query) return null
   if (searchResults.nbHits > 0) return <Hits hitComponent={Hit} />
-  return <div>No results</div>
+  return <div className="ais-noResult">Nincs találat &#x1F622;</div>
 }
 
 const Results = connectStateResults(ResultsComp)

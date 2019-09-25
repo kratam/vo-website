@@ -74,6 +74,21 @@ export default function KnowledgeBaseTemplate(props) {
                 )}
               </Typography>
               <article className="kb-body">
+                <header>
+                  <Typography variant="h1" gutterBottom>
+                    {category.data.name.text}
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      paddingBottom: 30,
+                      lineHeight: '1.2em',
+                      color: '#ababab',
+                    }}
+                  >
+                    {category.data.description.text}
+                  </Typography>
+                </header>
                 <RichText
                   render={category.data.body.raw}
                   htmlSerializer={htmlSerializer}

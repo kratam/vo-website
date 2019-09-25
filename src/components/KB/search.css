@@ -6,6 +6,13 @@
   position: relative;
 }
 
+.ais-noResult {
+  position: absolute;
+  margin-top: 3px;
+  margin-left: 12px;
+  font-weight: 600;
+}
+
 .ais-Highlight {
   display: block;
 }
