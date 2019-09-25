@@ -1,51 +1,37 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react'
 import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
-import { Breadcrumbs, Paper, Typography, Container } from '@material-ui/core'
-import _ from 'lodash'
+import { graphql } from 'gatsby'
+import { Paper, Container, Typography } from '@material-ui/core'
+import get from 'lodash/get'
+import { RichText } from 'prismic-reactjs'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
+import Breadcrumbs from '../components/KB/breadcrumbs'
+import htmlSerializer from '../utils/htmlSerialize'
 import './kb.css'
 
-const Breadc = ({ kbPathArray, allCategories }) => {
-  const getPath = i => {
-    let ret = '/kb'
-    _.times(i + 1, n => {
-      ret = `${ret}/${kbPathArray[n]}`
-    })
-    return ret
-  }
-  return (
-    <Breadcrumbs aria-label="breadcrumb" className="breadcrumbs">
-      <Link to="/" className="breadcrumbs-item">
-        <Typography variant="caption">Főoldal</Typography>
-      </Link>
-      {kbPathArray.map((path, i) => (
-        <Link key={path} to={getPath(i)} className="breadcrumbs-item">
-          <Typography variant="caption">
-            {allCategories.find(c => c.node.uid === path).node.data.name.text}
-          </Typography>
-        </Link>
-      ))}
-    </Breadcrumbs>
-  )
-}
-
 export default function KnowledgeBaseTemplate(props) {
-  const category = _.get(props, 'data.category.data')
-  const categories = _.get(props, 'data.subCategories.edges', [])
-  const noCoverImg = _.get(props, 'data.noCover.edges[0].node')
-  const allCategories = _.get(props, 'data.allCategories.edges', [])
-  const kbPathArray = _.get(props, 'pageContext.mypath').split('/')
+  const category = get(props, 'data.category')
+  const firstUpdate = new Date(
+    category.first_publication_date,
+  ).toLocaleDateString()
+  const lastUpdate = new Date(
+    category.last_publication_date,
+  ).toLocaleDateString()
+  const categories = get(props, 'data.subCategories.edges', [])
+  const noCoverImg = get(props, 'data.noCover.edges[0].node')
+  const allCategories = get(props, 'data.allCategories.edges', [])
+  const kbPathArray = get(props, 'pageContext.mypath').split('/')
   return (
     <div>
       <Helmet>
-        <title>{category.name.text}</title>
+        <title>{category.data.name.text}</title>
       </Helmet>
       <Search />
       <Container maxWidth="md">
-        <Breadc kbPathArray={kbPathArray} allCategories={allCategories} />
+        <Breadcrumbs kbPathArray={kbPathArray} allCategories={allCategories} />
         {categories.length > 0 && (
           <div className="kb-cards-holder">
             <KBCards
@@ -55,12 +41,27 @@ export default function KnowledgeBaseTemplate(props) {
             />
           </div>
         )}
-        {category.body.html && (
+        {category.data.body.raw && (
           <Paper className="kb-body-paper">
             <Typography
-              dangerouslySetInnerHTML={{ __html: category.body.html }}
-              className="kb-body"
-            />
+              variant="caption"
+              className="kb-body-lastupdate"
+              component="div"
+            >
+              Készült: {firstUpdate}
+              {lastUpdate !== firstUpdate && (
+                <>
+                  <br />
+                  Frissült: {lastUpdate}
+                </>
+              )}
+            </Typography>
+            <div className="kb-body">
+              <RichText
+                render={category.data.body.raw}
+                htmlSerializer={htmlSerializer}
+              />
+            </div>
           </Paper>
         )}
       </Container>
@@ -82,12 +83,31 @@ export const pageQuery = graphql`
       }
     }
     category: prismicKbCategory(uid: { eq: $uid }) {
+      first_publication_date
+      last_publication_date
       data {
         name {
           text
         }
         body {
-          html
+          raw {
+            type
+            text
+            spans {
+              start
+              end
+              type
+              data {
+                link_type
+                url
+              }
+            }
+            url
+            dimensions {
+              width
+              height
+            }
+          }
         }
       }
     }

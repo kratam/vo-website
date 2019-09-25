@@ -4,8 +4,19 @@
   margin-bottom: 20px;
 }
 
-.kb-body img {
+.kb-body-paper img {
   max-width: 100%;
+}
+
+.kb-body-paper a {
+  text-decoration: underline;
+}
+
+.kb-body-lastupdate {
+  margin-top: -12px !important;
+  margin-right: -12px !important;
+  text-align: right;
+  line-height: 110% !important;
 }
 
 .kb-cards-holder {

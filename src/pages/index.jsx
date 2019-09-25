@@ -1,15 +1,15 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
-import _ from 'lodash'
+import get from 'lodash/get'
 import { Container } from '@material-ui/core'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
 import './index.css'
 
 export default function BlogPost(props) {
-  const categories = _.get(props, 'data.allPrismicKbCategory.edges')
-  const noCoverImg = _.get(props, 'data.allImageSharp.edges[0].node')
+  const categories = get(props, 'data.allPrismicKbCategory.edges')
+  const noCoverImg = get(props, 'data.allImageSharp.edges[0].node')
   return (
     <div>
       <Helmet>

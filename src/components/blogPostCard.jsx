@@ -1,9 +1,9 @@
 import React from 'react'
 import { Typography, Card } from '@material-ui/core'
-import _ from 'lodash'
+import get from 'lodash/get'
 
 export default function BlogPostCard(props) {
-  const title = _.get(props, 'post.data.title.html')
+  const title = get(props, 'post.data.title.html')
   return (
     <div>
       <Card>
