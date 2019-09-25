@@ -59,25 +59,27 @@ export default function KnowledgeBaseTemplate(props) {
         )}
         {category.data.body.raw && (
           <Paper className="kb-body-paper">
-            <Typography
-              variant="caption"
-              className="kb-body-lastupdate"
-              component="div"
-            >
-              Készült: {firstUpdate}
-              {lastUpdate !== firstUpdate && (
-                <>
-                  <br />
-                  Frissült: {lastUpdate}
-                </>
-              )}
-            </Typography>
-            <article className="kb-body">
-              <RichText
-                render={category.data.body.raw}
-                htmlSerializer={htmlSerializer}
-              />
-            </article>
+            <Container maxWidth="sm" style={{ padding: 0 }}>
+              <Typography
+                variant="caption"
+                className="kb-body-lastupdate"
+                component="div"
+              >
+                Készült: {firstUpdate}
+                {lastUpdate !== firstUpdate && (
+                  <>
+                    <br />
+                    Frissült: {lastUpdate}
+                  </>
+                )}
+              </Typography>
+              <article className="kb-body">
+                <RichText
+                  render={category.data.body.raw}
+                  htmlSerializer={htmlSerializer}
+                />
+              </article>
+            </Container>
           </Paper>
         )}
       </Container>

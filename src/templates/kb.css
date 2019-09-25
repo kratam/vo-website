@@ -19,6 +19,12 @@
   line-height: 110% !important;
 }
 
+@media only screen and (min-width: 560px) {
+  .kb-body-lastupdate {
+    margin-top: 12px !important;
+  }
+}
+
 .kb-cards-holder {
   padding-top: 20px !important;
 }
