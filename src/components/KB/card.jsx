@@ -15,7 +15,7 @@ export default function KBCard({ data, uid, pathname }) {
     query KBCardQuery {
       noCoverImg: file(relativePath: { eq: "no-cover.jpg" }) {
         childImageSharp {
-          fixed(width: 300) {
+          fixed(width: 280) {
             ...GatsbyImageSharpFixed_withWebp
           }
         }
@@ -33,7 +33,7 @@ export default function KBCard({ data, uid, pathname }) {
             }
             objectFit="cover"
             objectPosition="50% 50%"
-            style={{ height: 140 }}
+            style={{ height: 140, maxWidth: 280 }}
           />
           <CardContent>
             <Typography gutterBottom variant="h6" className="card-title">

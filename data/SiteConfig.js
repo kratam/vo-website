@@ -6,7 +6,7 @@ const config = {
   siteUrl: 'https://vendegkonyv.online', // Domain of your website without pathPrefix.
   pathPrefix: '', // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription: 'NTAK kompatibilis szálláshelykezelő szoftver', // Website description used for RSS feeds/meta description tag.
-  themeColor: '#c62828', // Used for setting manifest and progress theme colors.
+  themeColor: '#fec604', // Used for setting manifest and progress theme colors.
   backgroundColor: '#e0e0e0', // Used for setting manifest background color.
 }
 

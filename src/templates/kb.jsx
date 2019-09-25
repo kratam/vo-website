@@ -164,7 +164,7 @@ export const pageQuery = graphql`
             cover {
               localFile {
                 childImageSharp {
-                  fixed(width: 300) {
+                  fixed(width: 280) {
                     ...GatsbyImageSharpFixed
                   }
                 }
