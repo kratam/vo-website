@@ -30,6 +30,18 @@ const htmlSerialize = (type, element, content, children, index) => {
           </Link>
         )
       }
+      // default external link
+
+      return (
+        <a
+          href={element.data.url}
+          target={element.data.target || '_blank'}
+          rel="noopener"
+          key={index}
+        >
+          {content}
+        </a>
+      )
     }
     case 'heading1': {
       return React.createElement(
