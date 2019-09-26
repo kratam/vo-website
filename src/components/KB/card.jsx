@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Card,
-  CardActionArea,
+  // CardActionArea,
   CardContent,
   Typography,
 } from '@material-ui/core'
@@ -11,6 +11,7 @@ import get from 'lodash/get'
 import './card.css'
 
 export default function KBCard({ data, uid, pathname }) {
+  const [raised, setRaised] = React.useState(false)
   const localData = useStaticQuery(graphql`
     query KBCardQuery {
       noCoverImg: file(relativePath: { eq: "no-cover.jpg" }) {
@@ -23,9 +24,15 @@ export default function KBCard({ data, uid, pathname }) {
     }
   `)
   return (
-    <Card className="kb-card-container">
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+    <Card
+      className="kb-card-container"
+      raised={raised}
+      onMouseOver={() => setRaised(true)}
+      onMouseOut={() => setRaised(false)}
+    >
       <Link to={`${pathname}/${uid}`}>
-        <CardActionArea className="kb-card-actionarea">
+        <div className="kb-card-actionarea">
           <Img
             fixed={
               get(data, 'cover.localFile.childImageSharp.fixed') ||
@@ -48,7 +55,7 @@ export default function KBCard({ data, uid, pathname }) {
               {data.description.text}
             </Typography>
           </CardContent>
-        </CardActionArea>
+        </div>
       </Link>
     </Card>
   )
