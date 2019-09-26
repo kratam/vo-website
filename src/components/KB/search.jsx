@@ -9,13 +9,7 @@ import {
   Highlight,
 } from 'react-instantsearch-dom'
 import algoliasearch from 'algoliasearch/lite'
-import {
-  Paper,
-  InputBase,
-  IconButton,
-  Container,
-  Typography,
-} from '@material-ui/core'
+import { Paper, InputBase, Container, Typography } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import { Link } from 'gatsby'
 import './search.css'
