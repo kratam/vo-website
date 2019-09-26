@@ -16,7 +16,7 @@
 
 @media only screen and (max-width: 400px) {
   .index-search-container {
-    padding-top: 30px;
+    padding-top: 0px;
     padding-bottom: 30px;
   }
 }

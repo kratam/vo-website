@@ -22,15 +22,14 @@ import './search.css'
 
 const Input = connectSearchBox(({ refine }) => (
   <Paper className="search-paper">
+    <SearchIcon className="search-icon" />
     <InputBase
+      autoFocus
       className="search-input"
-      placeholder="Keresés a tudásbázisban"
+      placeholder="kezdj el gépelni a kereséshez..."
       inputProps={{ 'aria-label': 'keresés a tudásbázisban' }}
       onChange={e => refine(e.target.value)}
     />
-    <IconButton className="search-icon" aria-label="keresés">
-      <SearchIcon />
-    </IconButton>
   </Paper>
 ))
 
@@ -68,6 +67,9 @@ export default function Search() {
   )
   return (
     <Container maxWidth="sm" className="search-container">
+      <Typography className="search-headline" variant="h6" gutterBottom>
+        A rövidtávú szálláshelykiadás tudásbázisa
+      </Typography>
       <InstantSearch searchClient={searchClient} indexName="knowledgebase">
         <Input />
         <Results />

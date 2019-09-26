@@ -1,5 +1,13 @@
 .search-container {
   padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-headline {
+  color: white;
+  text-align: center;
 }
 
 .ais-Hits {
@@ -38,6 +46,12 @@
   color: #3f3f3f !important;
 }
 
+/* search input holder */
+
+.ais-InstantSearch__root {
+  width: 100%;
+}
+
 .search-paper {
   padding: 2px 4px;
   display: flex;
@@ -45,10 +59,11 @@
 }
 
 .search-input {
-  margin-left: 8px;
   flex: 1;
 }
 
 .search-icon {
-  padding: 10px;
+  margin: 12px;
+  height: 24px;
+  color: grey;
 }
