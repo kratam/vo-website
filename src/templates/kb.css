@@ -2,6 +2,13 @@
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
+  padding-bottom: 80px;
+}
+
+@media only screen and (max-width: 560px) {
+  .kb-body-paper {
+    padding-bottom: 20px;
+  }
 }
 
 .kb-body-paper img {
@@ -34,4 +41,8 @@
   margin-top: 6px !important;
   /* border-bottom: 1px solid rgb(226, 226, 226); */
   margin-bottom: -12px !important;
+}
+
+.richtext.h {
+  line-height: 110%;
 }
