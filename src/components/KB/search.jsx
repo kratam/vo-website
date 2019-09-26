@@ -49,19 +49,38 @@ const Hit = ({ hit }) => {
   )
 }
 
-const ResultsComp = ({ searchState, searchResults }) => {
+const ResultsComp = ({ searchState, searchResults, searching }) => {
   if (!searchState.query) return null
   if (searchResults.nbHits > 0) return <Hits hitComponent={Hit} />
+  if (searching) return null
   return <div className="ais-noResult">Nincs találat &#x1F622;</div>
 }
 
 const Results = connectStateResults(ResultsComp)
 
 export default function Search() {
-  const searchClient = algoliasearch(
+  const algoliaClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
     process.env.GATSBY_ALGOLIA_SEARCH_KEY,
   )
+
+  const searchClient = {
+    search(requests) {
+      if (requests.every(({ params }) => !params.query)) {
+        return Promise.resolve({
+          results: requests.map(() => ({
+            hits: [],
+            nbHits: 0,
+            nbPages: 0,
+            processingTimeMS: 0,
+          })),
+        })
+      }
+
+      return algoliaClient.search(requests)
+    },
+  }
+
   return (
     <Container maxWidth="sm" className="search-container">
       <Typography className="search-headline" variant="h6" gutterBottom>
