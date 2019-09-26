@@ -28,6 +28,7 @@ const Input = connectSearchBox(({ refine }) => (
 ))
 
 const Hit = ({ hit }) => {
+  if (!hit._highlightResult.name) return null
   return (
     <Link to={`/kb/${hit.slug}`}>
       <Paper className="search-hit-paper">
@@ -36,11 +37,13 @@ const Hit = ({ hit }) => {
             {hit._highlightResult.name.value}
           </Highlight>
         </Typography>
-        <Typography variant="body2">
-          <Highlight attribute="description" hit={hit}>
-            {hit._highlightResult.description.value}
-          </Highlight>
-        </Typography>
+        {hit._highlightResult.description && (
+          <Typography variant="body2">
+            <Highlight attribute="description" hit={hit}>
+              {hit._highlightResult.description.value}
+            </Highlight>
+          </Typography>
+        )}
       </Paper>
     </Link>
   )
