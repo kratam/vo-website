@@ -8,6 +8,7 @@ const config = {
   siteDescription: 'NTAK kompatibilis szálláshelykezelő szoftver', // Website description used for RSS feeds/meta description tag.
   themeColor: '#fec604', // Used for setting manifest and progress theme colors.
   backgroundColor: '#e0e0e0', // Used for setting manifest background color.
+  googleAnalyticsID: 'UA-124841508-4',
 }
 
 // Validate
