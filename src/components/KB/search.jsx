@@ -12,20 +12,24 @@ import algoliasearch from 'algoliasearch/lite'
 import { Paper, InputBase, Container, Typography } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import { Link } from 'gatsby'
+import useWindowSize from '../../utils/hooks/useWindowSize'
 import './search.css'
 
-const Input = connectSearchBox(({ refine }) => (
-  <Paper className="search-paper">
-    <SearchIcon className="search-icon" />
-    <InputBase
-      autoFocus
-      className="search-input"
-      placeholder="kezdj el gépelni a kereséshez..."
-      inputProps={{ 'aria-label': 'keresés a tudásbázisban' }}
-      onChange={e => refine(e.target.value)}
-    />
-  </Paper>
-))
+const Input = connectSearchBox(({ refine }) => {
+  const size = useWindowSize()
+  return (
+    <Paper className="search-paper">
+      <SearchIcon className="search-icon" />
+      <InputBase
+        autoFocus={size.width > 500 ? true : undefined}
+        className="search-input"
+        placeholder="kezdj el gépelni a kereséshez..."
+        inputProps={{ 'aria-label': 'keresés a tudásbázisban' }}
+        onChange={e => refine(e.target.value)}
+      />
+    </Paper>
+  )
+})
 
 const Hit = ({ hit }) => {
   if (!hit._highlightResult.name) return null
