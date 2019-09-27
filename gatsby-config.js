@@ -14,6 +14,17 @@ module.exports = {
     siteUrl: urljoin(config.siteUrl, config.pathPrefix),
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Open Sans`,
+            variants: [`400`, `600`],
+          },
+        ],
+      },
+    },
     'gatsby-theme-material-ui',
     {
       resolve: 'gatsby-source-prismic',

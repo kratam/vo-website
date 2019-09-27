@@ -49,6 +49,49 @@
   margin-bottom: -12px !important;
 }
 
-.richtext.h {
+/* knowledge paper style */
+
+.richtext {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.richtext p {
+  font-size: 1em;
+  text-align: justify;
+}
+
+.richtext h1, .richtext h2, .richtext h3, .richtext h4, .richtext h5, .richtext h6 {
   line-height: 110%;
+  font-weight: 600;
+}
+
+.richtext h1 {
+  font-size: 1.7em;
+}
+
+.richtext h2 {
+  font-size: 1.5em;
+}
+
+.richtext h3 {
+  font-size: 1.4em;
+}
+
+.richtext h4 {
+  font-size: 1.3em;
+}
+
+.richtext h5 {
+  font-size: 1.2em;
+}
+
+.richtext h6 {
+  font-size: 1.1em;
+}
+
+@media only screen and (max-width: 560px) {
+  .richtext {
+    font-size: 14px;
+  }
 }

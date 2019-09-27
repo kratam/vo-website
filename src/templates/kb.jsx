@@ -89,10 +89,12 @@ export default function KnowledgeBaseTemplate(props) {
                     {category.data.description.text}
                   </Typography>
                 </header>
-                <RichText
-                  render={category.data.body.raw}
-                  htmlSerializer={htmlSerializer}
-                />
+                <div className="richtext">
+                  <RichText
+                    render={category.data.body.raw}
+                    htmlSerializer={htmlSerializer}
+                  />
+                </div>
               </article>
             </Container>
           </Paper>
