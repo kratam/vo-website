@@ -74,20 +74,21 @@ export default function KnowledgeBaseTemplate(props) {
                 )}
               </Typography>
               <article className="kb-body">
-                <header>
-                  <Typography variant="h1" gutterBottom>
+                <header style={{ marginBottom: 30 }}>
+                  <Typography variant="h1" gutterBottom className="kb-title">
                     {category.data.name.text}
                   </Typography>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      paddingBottom: 30,
-                      lineHeight: '1.2em',
-                      color: '#ababab',
-                    }}
-                  >
-                    {category.data.description.text}
-                  </Typography>
+                  {category.data.description.text && (
+                    <Typography
+                      variant="h6"
+                      style={{
+                        lineHeight: '1.2em',
+                        color: '#ababab',
+                      }}
+                    >
+                      {category.data.description.text}
+                    </Typography>
+                  )}
                 </header>
                 <div className="richtext">
                   <RichText
