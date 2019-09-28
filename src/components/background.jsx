@@ -7,6 +7,7 @@ const Background = ({ children }) => {
     <div
       style={{
         backgroundImage: `url("/pencil-bg.jpg")`,
+        backgroundColor: '#fec604',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
