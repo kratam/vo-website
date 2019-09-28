@@ -45,11 +45,14 @@ export const pageQuery = graphql`
         node {
           uid
           data {
+            parent_category {
+              uid
+            }
             order
             cover {
               localFile {
                 childImageSharp {
-                  fixed(width: 280) {
+                  fixed(width: 270) {
                     ...GatsbyImageSharpFixed
                   }
                 }

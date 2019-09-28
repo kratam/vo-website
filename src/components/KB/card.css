@@ -1,7 +1,11 @@
 .kb-card-container {
   width: 100%;
-  max-width: 280px;
+  width: 270px;
   justify-self: center;
+}
+
+.kb-card-actionarea.shorter {
+  min-height: 120px;
 }
 
 .kb-card-actionarea {
