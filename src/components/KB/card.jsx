@@ -5,10 +5,33 @@ import {
   CardContent,
   Typography,
 } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
 import get from 'lodash/get'
-import './card.css'
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    width: 270,
+    justifySelf: 'center',
+  },
+  actionArea: {
+    minHeight: props => (props.isRootCategory ? 250 : 120),
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.down('sm')]: {
+      minHeight: props => (props.isRootCategory ? 200 : 120),
+    },
+  },
+  title: {
+    lineHeight: '110%',
+  },
+  cover: {
+    width: '110%',
+    objectFit: 'cover',
+    height: 140,
+  },
+}))
 
 export default function KBCard({ data, uid, pathname }) {
   const [raised, setRaised] = React.useState(false)
@@ -24,19 +47,18 @@ export default function KBCard({ data, uid, pathname }) {
     }
   `)
   const isRootCategory = get(data, 'parent_category') === null
+  const classes = useStyles({ isRootCategory })
   // const hasImg = get(data, 'cover.localFile.childImageSharp.fixed', false)
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <Card
-      className="kb-card-container"
+      className={classes.container}
       raised={raised}
       onMouseOver={() => setRaised(true)}
       onMouseOut={() => setRaised(false)}
     >
       <Link to={`${pathname}/${uid}`}>
-        <div
-          className={`kb-card-actionarea ${isRootCategory ? '' : 'shorter'}`}
-        >
+        <div className={classes.actionArea}>
           {isRootCategory && (
             <Img
               fixed={
@@ -49,15 +71,10 @@ export default function KBCard({ data, uid, pathname }) {
             />
           )}
           <CardContent>
-            <Typography gutterBottom variant="h6" className="card-title">
+            <Typography gutterBottom variant="h6" className={classes.title}>
               {data.name.text}
             </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="p"
-              className="card-description"
-            >
+            <Typography variant="body2" color="textSecondary" component="p">
               {data.description.text}
             </Typography>
           </CardContent>

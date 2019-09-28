@@ -10,19 +10,36 @@ import {
 } from 'react-instantsearch-dom'
 import algoliasearch from 'algoliasearch/lite'
 import { Paper, InputBase, Container, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import SearchIcon from '@material-ui/icons/Search'
 import { Link } from 'gatsby'
 import useWindowSize from '../../utils/hooks/useWindowSize'
-import './search.css'
+
+const useInputStyles = makeStyles(() => ({
+  paper: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  icon: {
+    margin: 12,
+    height: 24,
+    color: 'grey',
+  },
+  input: {
+    flex: 1,
+  },
+}))
 
 const Input = connectSearchBox(({ refine }) => {
+  const classes = useInputStyles()
   const size = useWindowSize()
   return (
-    <Paper className="search-paper">
-      <SearchIcon className="search-icon" />
+    <Paper className={classes.paper}>
+      <SearchIcon className={classes.icon} />
       <InputBase
         autoFocus={size.width > 500 ? true : undefined}
-        className="search-input"
+        className={classes.input}
         placeholder="kezdj el gépelni a kereséshez..."
         inputProps={{ 'aria-label': 'keresés a tudásbázisban' }}
         onChange={e => refine(e.target.value)}
@@ -31,11 +48,20 @@ const Input = connectSearchBox(({ refine }) => {
   )
 })
 
+const useHitStyles = makeStyles(() => ({
+  paper: {
+    padding: '8px 16px',
+    marginTop: 2,
+    color: '#3f3f3f',
+  },
+}))
+
 const Hit = ({ hit }) => {
+  const classes = useHitStyles()
   if (!hit._highlightResult.name) return null
   return (
     <Link to={`/kb/${hit.slug}`}>
-      <Paper className="search-hit-paper">
+      <Paper className={classes.paper}>
         <Typography variant="h5">
           <Highlight attribute="name" hit={hit}>
             {hit._highlightResult.name.value}
@@ -62,7 +88,21 @@ const ResultsComp = ({ searchState, searchResults, searching }) => {
 
 const Results = connectStateResults(ResultsComp)
 
+const useStyles = makeStyles(() => ({
+  container: {
+    padding: '40px 0',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  headline: {
+    color: 'white',
+    textAlign: 'center',
+  },
+}))
+
 export default function Search() {
+  const classes = useStyles()
   const algoliaClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
     process.env.GATSBY_ALGOLIA_SEARCH_KEY,
@@ -86,8 +126,8 @@ export default function Search() {
   }
 
   return (
-    <Container maxWidth="sm" className="search-container">
-      <Typography className="search-headline" variant="h6" gutterBottom>
+    <Container maxWidth="sm" className={classes.container}>
+      <Typography className={classes.headline} variant="h6" gutterBottom>
         A rövidtávú szálláshelykiadás tudásbázisa
       </Typography>
       <InstantSearch searchClient={searchClient} indexName="knowledgebase">

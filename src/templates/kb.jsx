@@ -4,6 +4,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import { Paper, Container, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import get from 'lodash/get'
 import { RichText } from 'prismic-reactjs'
 import KBCards from '../components/KB/cardList'
@@ -11,9 +12,38 @@ import Search from '../components/KB/search'
 import Breadcrumbs from '../components/KB/breadcrumbs'
 import Background from '../components/background'
 import htmlSerializer from '../utils/htmlSerialize'
-import './kb.css'
+
+const useStyles = makeStyles(theme => ({
+  cardHolder: {
+    paddingTop: 20,
+  },
+  paper: {
+    padding: 20,
+    paddingBottom: 20,
+    marginTop: 20,
+    marginBottom: 20,
+    [theme.breakpoints.down('sm')]: {
+      paddingBottom: 20,
+    },
+  },
+  title: {
+    marginTop: 20,
+    marginBottom: 4,
+  },
+  lastUpdate: {
+    marginTop: -12,
+    marginRight: -12,
+    textAlign: 'right',
+    lineHeight: '110%',
+  },
+  [theme.breakpoints.up('md')]: {
+    marginTop: 12,
+  },
+  body: {},
+}))
 
 export default function KnowledgeBaseTemplate(props) {
+  const classes = useStyles()
   const category = get(props, 'data.category')
   const firstUpdate = new Date(
     category.first_publication_date,
@@ -44,12 +74,14 @@ export default function KnowledgeBaseTemplate(props) {
         />
       </Helmet>
       <Background>
-        <Search />
+        <Container maxWidth="md">
+          <Search />
+        </Container>
       </Background>
       <Container maxWidth="md">
         <Breadcrumbs kbPathArray={kbPathArray} allCategories={allCategories} />
         {categories.length > 0 && (
-          <div className="kb-cards-holder">
+          <div className={classes.cardHolder}>
             <KBCards
               categories={categories}
               noCoverImg={noCoverImg}
@@ -58,11 +90,11 @@ export default function KnowledgeBaseTemplate(props) {
           </div>
         )}
         {category.data.body.raw && (
-          <Paper className="kb-body-paper">
+          <Paper className={classes.paper}>
             <Container maxWidth="sm" style={{ padding: 0 }}>
               <Typography
                 variant="caption"
-                className="kb-body-lastupdate"
+                className={classes.lastUpdate}
                 component="div"
               >
                 Készült: {firstUpdate}
@@ -73,9 +105,13 @@ export default function KnowledgeBaseTemplate(props) {
                   </>
                 )}
               </Typography>
-              <article className="kb-body">
+              <article className={classes.body}>
                 <header style={{ marginBottom: 30 }}>
-                  <Typography variant="h1" gutterBottom className="kb-title">
+                  <Typography
+                    variant="h1"
+                    gutterBottom
+                    className={classes.title}
+                  >
                     {category.data.name.text}
                   </Typography>
                   {category.data.description.text && (

@@ -4,12 +4,32 @@ import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import { Container } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
 import Background from '../components/background'
-import './index.css'
+import '../style.css'
+
+const useStyles = makeStyles(theme => ({
+  searchContainer: {
+    paddingTop: 120,
+    paddingBottom: 120,
+    [theme.breakpoints.down(700)]: {
+      paddingTop: 60,
+      paddingBottom: 60,
+    },
+    [theme.breakpoints.down(400)]: {
+      paddingTop: 0,
+      paddingBottom: 30,
+    },
+  },
+  cardHolder: {
+    paddingTop: 30,
+  },
+}))
 
 export default function BlogPost(props) {
+  const classes = useStyles()
   const categories = get(props, 'data.allPrismicKbCategory.edges')
   return (
     <div>
@@ -18,13 +38,13 @@ export default function BlogPost(props) {
       </Helmet>
       <Background>
         <Container maxWidth="md">
-          <div className="index-search-container">
+          <div className={classes.searchContainer}>
             <Search />
           </div>
         </Container>
       </Background>
       <Container maxWidth="md">
-        <div className="kb-card-holder">
+        <div className={classes.cardHolder}>
           <KBCards categories={categories} pathname="/kb" />
         </div>
       </Container>

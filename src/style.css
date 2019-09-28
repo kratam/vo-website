@@ -1,43 +1,49 @@
-.kb-body-paper {
-  padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 80px;
+a:link {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
 }
 
-.kb-body-paper .kb-title {
-  margin-top: 20px;
-  margin-bottom: 4px;
+a:visited {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
 }
 
-@media only screen and (max-width: 560px) {
-  .kb-body-paper {
-    padding-bottom: 20px;
-  }
+/* algolia search results */
+
+.ais-Hits {
+  position: relative;
 }
 
-.kb-body-lastupdate {
-  margin-top: -12px !important;
-  margin-right: -12px !important;
-  text-align: right;
-  line-height: 110% !important;
+.ais-noResult {
+  position: absolute;
+  margin-top: 3px;
+  margin-left: 12px;
+  font-weight: 600;
 }
 
-@media only screen and (min-width: 560px) {
-  .kb-body-lastupdate {
-    margin-top: 12px !important;
-  }
+.ais-Highlight {
+  display: block;
 }
 
-.kb-cards-holder {
-  padding-top: 20px !important;
+.ais-Highlight-highlighted {
+  background-color: #fbc200;
+  /* color: white; */
+  font-style: normal;
 }
 
-.breadcrumbs {
-  font-size: 14px !important;
-  margin-top: 6px !important;
-  /* border-bottom: 1px solid rgb(226, 226, 226); */
-  margin-bottom: -12px !important;
+.ais-Hits-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 999;
+  width: 100%
+}
+
+.ais-InstantSearch__root {
+  width: 100%;
 }
 
 /* knowledge paper style */

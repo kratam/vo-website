@@ -1,10 +1,20 @@
 import React from 'react'
 // import { useStaticQuery, graphql } from 'gatsby'
 // import BackgroundImage from 'gatsby-background-image'
-import './background.css'
 
 const Background = ({ children }) => {
-  return <div className="main-bg">{children}</div>
+  return (
+    <div
+      style={{
+        backgroundImage: `url("/pencil-bg.jpg")`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {children}
+    </div>
+  )
 }
 
 // const Background = ({ children }) => {
