@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: -12,
     textAlign: 'right',
     lineHeight: '110%',
+    color: theme.palette.grey[500],
   },
   [theme.breakpoints.up('md')]: {
     marginTop: 12,
