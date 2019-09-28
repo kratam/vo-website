@@ -4,23 +4,25 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import { Paper, Container, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles, useTheme } from '@material-ui/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import get from 'lodash/get'
 import { RichText } from 'prismic-reactjs'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
 import Breadcrumbs from '../components/KB/breadcrumbs'
 import Background from '../components/background'
+import CategoryList from '../components/KB/list'
 import htmlSerializer from '../utils/htmlSerialize'
 
 const useStyles = makeStyles(theme => ({
-  cardHolder: {
-    paddingTop: 20,
+  paperContainer: {
+    paddingTop: 32,
   },
   paper: {
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
     paddingBottom: 20,
-    marginTop: 20,
     marginBottom: 20,
     [theme.breakpoints.down('sm')]: {
       paddingBottom: 20,
@@ -31,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 4,
   },
   lastUpdate: {
-    marginTop: -12,
+    paddingTop: 8,
     marginRight: -12,
     textAlign: 'right',
     lineHeight: '110%',
@@ -43,6 +45,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function KnowledgeBaseTemplate(props) {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'))
   const classes = useStyles()
   const category = get(props, 'data.category')
   const firstUpdate = new Date(
@@ -52,7 +56,6 @@ export default function KnowledgeBaseTemplate(props) {
     category.last_publication_date,
   ).toLocaleDateString()
   const categories = get(props, 'data.subCategories.edges', [])
-  const noCoverImg = get(props, 'data.noCoverImg')
   const allCategories = get(props, 'data.allCategories.edges', [])
   const kbPathArray = get(props, 'pageContext.mypath').split('/')
   const seoPath = kbPathArray
@@ -80,18 +83,17 @@ export default function KnowledgeBaseTemplate(props) {
       </Background>
       <Container maxWidth="md">
         <Breadcrumbs kbPathArray={kbPathArray} allCategories={allCategories} />
-        {categories.length > 0 && (
-          <div className={classes.cardHolder}>
-            <KBCards
-              categories={categories}
-              noCoverImg={noCoverImg}
-              pathname={props.location.pathname}
-            />
-          </div>
+        {categories.length > 0 && isMobile ? (
+          <CategoryList
+            categories={categories}
+            pathname={props.location.pathname}
+          />
+        ) : (
+          <KBCards categories={categories} pathname={props.location.pathname} />
         )}
         {category.data.body.raw && (
-          <Paper className={classes.paper}>
-            <Container maxWidth="sm" style={{ padding: 0 }}>
+          <div className={classes.paperContainer}>
+            <Paper className={classes.paper}>
               <Typography
                 variant="caption"
                 className={classes.lastUpdate}
@@ -105,36 +107,38 @@ export default function KnowledgeBaseTemplate(props) {
                   </>
                 )}
               </Typography>
-              <article className={classes.body}>
-                <header style={{ marginBottom: 30 }}>
-                  <Typography
-                    variant="h1"
-                    gutterBottom
-                    className={classes.title}
-                  >
-                    {category.data.name.text}
-                  </Typography>
-                  {category.data.description.text && (
+              <Container maxWidth="sm" style={{ padding: 0 }}>
+                <article className={classes.body}>
+                  <header style={{ marginBottom: 30 }}>
                     <Typography
-                      variant="h6"
-                      style={{
-                        lineHeight: '1.2em',
-                        color: '#ababab',
-                      }}
+                      variant="h1"
+                      gutterBottom
+                      className={classes.title}
                     >
-                      {category.data.description.text}
+                      {category.data.name.text}
                     </Typography>
-                  )}
-                </header>
-                <div className="richtext">
-                  <RichText
-                    render={category.data.body.raw}
-                    htmlSerializer={htmlSerializer}
-                  />
-                </div>
-              </article>
-            </Container>
-          </Paper>
+                    {category.data.description.text && (
+                      <Typography
+                        variant="h6"
+                        style={{
+                          lineHeight: '1.2em',
+                          color: '#ababab',
+                        }}
+                      >
+                        {category.data.description.text}
+                      </Typography>
+                    )}
+                  </header>
+                  <div className="richtext">
+                    <RichText
+                      render={category.data.body.raw}
+                      htmlSerializer={htmlSerializer}
+                    />
+                  </div>
+                </article>
+              </Container>
+            </Paper>
+          </div>
         )}
       </Container>
     </div>

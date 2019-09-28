@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
   root: {
     fontSize: 14,
     marginTop: 6,
-    marginBottom: -12,
+    marginBottom: 6,
   },
 }))
 
@@ -28,6 +28,7 @@ const Breadcrumbs = ({ kbPathArray, allCategories }) => {
       maxItems={size.width < 400 ? 3 : undefined}
       aria-label="breadcrumb"
       className={classes.root}
+      component="div"
     >
       <Link to="/">
         <Typography variant="caption">Főoldal</Typography>

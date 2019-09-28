@@ -16,12 +16,11 @@ const useStyles = makeStyles(theme => ({
     justifySelf: 'center',
   },
   actionArea: {
-    minHeight: props => (props.isRootCategory ? 250 : 120),
+    [theme.breakpoints.up('sm')]: {
+      minHeight: props => (props.isRootCategory ? 250 : 120),
+    },
     display: 'flex',
     flexDirection: 'column',
-    [theme.breakpoints.down('sm')]: {
-      minHeight: props => (props.isRootCategory ? 200 : 120),
-    },
   },
   title: {
     lineHeight: '110%',
