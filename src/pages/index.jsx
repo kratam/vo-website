@@ -11,11 +11,11 @@ import Background from '../components/background'
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
-    paddingTop: 120,
-    paddingBottom: 120,
+    paddingTop: 80,
+    paddingBottom: 80,
     [theme.breakpoints.down(700)]: {
-      paddingTop: 60,
-      paddingBottom: 60,
+      paddingTop: 40,
+      paddingBottom: 40,
     },
     [theme.breakpoints.down(400)]: {
       paddingTop: 0,
