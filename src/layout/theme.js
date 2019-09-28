@@ -1,5 +1,6 @@
 /* eslint-disable import/no-mutable-exports */
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import '../style.css'
 
 let theme = createMuiTheme({
   palette: {

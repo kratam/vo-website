@@ -27,7 +27,7 @@ const Breadcrumbs = ({ kbPathArray, allCategories }) => {
     <MUIBreadCrumbs
       maxItems={size.width < 400 ? 3 : undefined}
       aria-label="breadcrumb"
-      className={classes.root}
+      classes={{ root: classes.root }}
       component="div"
     >
       <Link to="/">

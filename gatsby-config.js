@@ -25,7 +25,13 @@ module.exports = {
         ],
       },
     },
-    'gatsby-theme-material-ui',
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        disableAutoprefixing: false,
+        disableMinification: true,
+      },
+    },
     {
       resolve: 'gatsby-source-prismic',
       options: {

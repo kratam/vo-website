@@ -35,11 +35,11 @@ const Input = connectSearchBox(({ refine }) => {
   const classes = useInputStyles()
   const size = useWindowSize()
   return (
-    <Paper className={classes.paper}>
-      <SearchIcon className={classes.icon} />
+    <Paper classes={{ root: classes.paper }}>
+      <SearchIcon classes={{ root: classes.icon }} />
       <InputBase
         autoFocus={size.width > 500 ? true : undefined}
-        className={classes.input}
+        classes={{ root: classes.input }}
         placeholder="kezdj el gépelni a kereséshez..."
         inputProps={{ 'aria-label': 'keresés a tudásbázisban' }}
         onChange={e => refine(e.target.value)}
@@ -61,7 +61,7 @@ const Hit = ({ hit }) => {
   if (!hit._highlightResult.name) return null
   return (
     <Link to={`/kb/${hit.slug}`}>
-      <Paper className={classes.paper}>
+      <Paper classes={{ root: classes.paper }}>
         <Typography variant="h5">
           <Highlight attribute="name" hit={hit}>
             {hit._highlightResult.name.value}
@@ -96,7 +96,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
   },
   headline: {
-    color: 'white',
+    color: '#fff',
     textAlign: 'center',
   },
 }))
@@ -126,8 +126,12 @@ export default function Search() {
   }
 
   return (
-    <Container maxWidth="sm" className={classes.container}>
-      <Typography className={classes.headline} variant="h6" gutterBottom>
+    <Container maxWidth="sm" classes={{ root: classes.container }}>
+      <Typography
+        classes={{ root: classes.headline }}
+        variant="h6"
+        gutterBottom
+      >
         A rövidtávú szálláshelykiadás tudásbázisa
       </Typography>
       <InstantSearch searchClient={searchClient} indexName="knowledgebase">

@@ -93,10 +93,10 @@ export default function KnowledgeBaseTemplate(props) {
         )}
         {category.data.body.raw && (
           <div className={classes.paperContainer}>
-            <Paper className={classes.paper}>
+            <Paper classes={{ root: classes.paper }}>
               <Typography
                 variant="caption"
-                className={classes.lastUpdate}
+                classes={{ root: classes.lastUpdate }}
                 component="div"
               >
                 Készült: {firstUpdate}
@@ -113,7 +113,7 @@ export default function KnowledgeBaseTemplate(props) {
                     <Typography
                       variant="h1"
                       gutterBottom
-                      className={classes.title}
+                      classes={{ root: classes.title }}
                     >
                       {category.data.name.text}
                     </Typography>

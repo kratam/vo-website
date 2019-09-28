@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/styles'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
 import Background from '../components/background'
-import '../style.css'
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {

@@ -33,12 +33,12 @@ export default function CategoryList(props) {
   const { categories: unsortedCategories, pathname } = props
   const categories = sortBy(unsortedCategories, o => o.node.data.order)
   return (
-    <Paper className={classes.paper}>
+    <Paper classes={{ root: classes.paper }}>
       <List
-        className={classes.list}
+        classes={{ root: classes.list }}
         disablePadding
         subheader={
-          <ListSubheader component="div" className={classes.subheader}>
+          <ListSubheader component="div" classes={{ root: classes.subheader }}>
             Altémák
           </ListSubheader>
         }

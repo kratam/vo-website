@@ -18,7 +18,7 @@ export default function CardList(props) {
   return (
     <Grid container spacing={4} justify="space-around">
       {categories.map(({ node }) => (
-        <Grid item xs key={node.uid} className={classes.item}>
+        <Grid item xs key={node.uid} classes={{ root: classes.item }}>
           <KBCard {...node} pathname={pathname} />
         </Grid>
       ))}

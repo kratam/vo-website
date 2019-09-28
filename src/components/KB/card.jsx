@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React from 'react'
 import {
   Card,
@@ -13,7 +14,6 @@ import get from 'lodash/get'
 const useStyles = makeStyles(theme => ({
   container: {
     width: 270,
-    justifySelf: 'center',
   },
   actionArea: {
     [theme.breakpoints.up('sm')]: {
@@ -49,10 +49,9 @@ export default function KBCard({ data, uid, pathname }) {
   const classes = useStyles({ isRootCategory })
   // const hasImg = get(data, 'cover.localFile.childImageSharp.fixed', false)
   return (
-    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <Card
-      className={classes.container}
       raised={raised}
+      classes={{ root: classes.container }}
       onMouseOver={() => setRaised(true)}
       onMouseOut={() => setRaised(false)}
     >
