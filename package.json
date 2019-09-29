@@ -81,6 +81,8 @@
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "build": "gatsby build",
+    "netlify": "netlify deploy --dir=public --prod",
+    "deploy": "yarn run build && yarn run netlify",
     "build:pp": "gatsby build --prefix-paths",
     "clean": "gatsby clean",
     "lint:js": "eslint --ext .js,.jsx .",
