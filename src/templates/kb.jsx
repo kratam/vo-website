@@ -3,9 +3,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
-import { Paper, Container, Typography } from '@material-ui/core'
-import { makeStyles, useTheme } from '@material-ui/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { Paper, Container, Typography, Hidden } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import get from 'lodash/get'
 import { RichText } from 'prismic-reactjs'
 import KBCards from '../components/KB/cardList'
@@ -46,8 +45,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function KnowledgeBaseTemplate(props) {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('xs'))
   const classes = useStyles()
   const category = get(props, 'data.category')
   const firstUpdate = new Date(
@@ -84,13 +81,21 @@ export default function KnowledgeBaseTemplate(props) {
       </Background>
       <Container maxWidth="md">
         <Breadcrumbs kbPathArray={kbPathArray} allCategories={allCategories} />
-        {categories.length > 0 && isMobile ? (
-          <CategoryList
-            categories={categories}
-            pathname={props.location.pathname}
-          />
-        ) : (
-          <KBCards categories={categories} pathname={props.location.pathname} />
+        {categories.length > 0 && (
+          <>
+            <Hidden xsDown implementation="css">
+              <KBCards
+                categories={categories}
+                pathname={props.location.pathname}
+              />
+            </Hidden>
+            <Hidden smUp implementation="css">
+              <CategoryList
+                categories={categories}
+                pathname={props.location.pathname}
+              />
+            </Hidden>
+          </>
         )}
         {category.data.body.raw && (
           <div className={classes.paperContainer}>
