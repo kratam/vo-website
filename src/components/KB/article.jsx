@@ -35,15 +35,30 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+function parseDate(date) {
+  const parsed = Date.parse(date)
+  if (!Number.isNaN(parsed)) {
+    return parsed
+  }
+
+  return Date.parse(date.replace(/-/g, '/').replace(/[a-z]+/gi, ' '))
+}
+
+function formatDate(date) {
+  return `${date.getFullYear()}.${`0${date.getMonth()}`.slice(
+    -2,
+  )}.${`0${date.getDate()}`.slice(-2)}.`
+}
+
 export default function Article(props) {
   const classes = useStyles()
   const category = get(props, 'data.category')
-  const firstUpdate = new Date(
-    category.first_publication_date,
-  ).toLocaleDateString()
-  const lastUpdate = new Date(
-    category.last_publication_date,
-  ).toLocaleDateString()
+  const firstUpdate = formatDate(
+    new Date(parseDate(category.first_publication_date)),
+  )
+  const lastUpdate = formatDate(
+    new Date(parseDate(category.last_publication_date)),
+  )
 
   return (
     <div className={classes.paperContainer}>
