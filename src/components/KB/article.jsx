@@ -45,7 +45,6 @@ export default function Article(props) {
     category.last_publication_date,
   ).toLocaleDateString()
 
-  console.log(category.data.body.raw)
   return (
     <div className={classes.paperContainer}>
       <Paper classes={{ root: classes.paper }}>
