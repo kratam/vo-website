@@ -101,6 +101,12 @@ module.exports = {
     // 'gatsby-plugin-catch-links',
     'gatsby-plugin-netlify-cache',
     {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://vendegkonyv.online`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-netlify',
       options: {
         headers: {
