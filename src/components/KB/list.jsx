@@ -44,7 +44,7 @@ export default function CategoryList(props) {
         }
       >
         {categories.map(({ node }) => (
-          <Link to={`${pathname}/${node.uid}`} key={node.uid}>
+          <Link to={`${pathname}/${node.uid}/`} key={node.uid}>
             <ListItem button>
               <ListItemText
                 primaryTypographyProps={{ className: classes.itemText }}

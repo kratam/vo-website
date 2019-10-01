@@ -34,15 +34,14 @@ const htmlSerialize = (type, element, content, children, index) => {
           element.data.url.includes('https://_kb/') ||
           element.data.url.includes('https://vendegkonyv.online/kb/'))
       ) {
+        let to = element.data.url
+          .replace('https:///kb/', '/kb/')
+          .replace('https://kb/', '/kb/')
+          .replace('https://_kb/', '/kb/')
+          .replace('https://vendegkonyv.online/kb/', '/kb/')
+        if (to.slice(-1) !== '/') to = `${to}/`
         return (
-          <Link
-            key={index}
-            to={element.data.url
-              .replace('https:///kb/', '/kb/')
-              .replace('https://kb/', '/kb/')
-              .replace('https://_kb/', '/kb/')
-              .replace('https://vendegkonyv.online/kb/', '/kb/')}
-          >
+          <Link key={index} to={to}>
             {content}
           </Link>
         )
