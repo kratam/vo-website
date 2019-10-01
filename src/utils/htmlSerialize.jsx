@@ -39,7 +39,7 @@ const htmlSerialize = (type, element, content, children, index) => {
           .replace('https://kb/', '/kb/')
           .replace('https://_kb/', '/kb/')
           .replace('https://vendegkonyv.online/kb/', '/kb/')
-        if (to.slice(-1) !== '/') to = `${to}/`
+        if (to.slice(-1) === '/') to = to.slice(0, -1)
         return (
           <Link key={index} to={to}>
             {content}

@@ -60,7 +60,7 @@ const Hit = ({ hit }) => {
   const classes = useHitStyles()
   if (!hit._highlightResult.name) return null
   return (
-    <Link to={`/kb/${hit.slug}/`}>
+    <Link to={`/kb/${hit.slug}`}>
       <Paper classes={{ root: classes.paper }}>
         <Typography variant="h5">
           <Highlight attribute="name" hit={hit}>

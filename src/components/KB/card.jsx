@@ -55,7 +55,7 @@ export default function KBCard({ data, uid, pathname }) {
       onMouseOver={() => setRaised(true)}
       onMouseOut={() => setRaised(false)}
     >
-      <Link to={`${pathname}/${uid}/`}>
+      <Link to={`${pathname}/${uid}`}>
         <div className={classes.actionArea}>
           {isRootCategory && (
             <Img

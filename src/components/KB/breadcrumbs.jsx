@@ -17,9 +17,9 @@ const Breadcrumbs = ({ kbPathArray, allCategories }) => {
   const classes = useStyles()
   const size = useWindowSize()
   const getPath = i => {
-    let ret = '/kb/'
+    let ret = '/kb'
     times(i + 1, n => {
-      ret = `${ret}${kbPathArray[n]}/`
+      ret = `${ret}/${kbPathArray[n]}`
     })
     return ret
   }
