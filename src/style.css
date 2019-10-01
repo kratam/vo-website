@@ -15,6 +15,30 @@ a:visited {
   text-decoration: none;
 }
 
+/* richText stuff for kb */
+
+.rt-callout {
+  padding: 20px 16px;
+  display: block;
+  width: 100%;
+  background-color: #fafafa;
+  border-left: 3px solid #fec604;
+}
+
+@media only screen and (max-width: 560px) {
+  .rt-callout {
+    padding: 16px 8px;
+  }
+}
+
+.rt-embed iframe {
+  width: 100% !important;
+}
+
+.rt-embed img {
+  width: 100% !important;
+}
+
 /* algolia search results */
 
 .ais-Hits {

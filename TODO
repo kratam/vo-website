@@ -1,6 +1,7 @@
 general:
-  - add footer with some links
-  - check why embedding fails
+  + add footer with some links
+  + check why embedding fails
 
-config:
+after start:
   - re-add plugin-offline
+  - edit robots.txt

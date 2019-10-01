@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
   gridContainer: {
     [theme.breakpoints.down('xs')]: {
-      marginLeft: theme.spacing(4),
+      paddingLeft: theme.spacing(4),
     },
   },
   title: {

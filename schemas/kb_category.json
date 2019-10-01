@@ -12,7 +12,8 @@
       "type": "StructuredText",
       "config": {
         "single": "heading1",
-        "label": "Name"
+        "label": "Name",
+        "useAsTitle": true
       }
     },
     "uid": {
@@ -36,12 +37,6 @@
         "placeholder": "Short description of the category"
       }
     },
-    "icon": {
-      "type": "Text",
-      "config": {
-        "label": "icon"
-      }
-    },
     "cover": {
       "type": "Image",
       "config": {
@@ -61,9 +56,10 @@
     "body": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item",
         "allowTargetBlank": true,
-        "label": "Body"
+        "label": "Body",
+        "labels": ["callout"]
       }
     }
   }

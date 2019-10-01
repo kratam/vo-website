@@ -1,14 +1,31 @@
 /* eslint-disable no-fallthrough */
 import React from 'react'
-// import { Typography } from '@material-ui/core'
+// import { Paper } from '@material-ui/core'
 import { Link } from 'gatsby'
-
-// function propsWithUniqueKey(props, key) {
-//   return Object.assign(props || {}, { key })
-// }
 
 const htmlSerialize = (type, element, content, children, index) => {
   switch (type) {
+    case 'label': {
+      const props = {
+        className: 'rt-callout',
+        key: index,
+      }
+      return React.createElement('span', props, children)
+    }
+    case 'embed': {
+      const props = {
+        key: index,
+        'data-oembed': element.oembed.embed_url,
+        'data-oembed-type': element.oembed.type,
+        'data-oembed-provider': element.oembed.provider_name,
+        className: `rt-embed${element.label || ''}`,
+      }
+
+      const embedHtml = React.createElement('div', {
+        dangerouslySetInnerHTML: { __html: element.oembed.html },
+      })
+      return React.createElement('div', props, embedHtml)
+    }
     case 'hyperlink': {
       if (
         element.data.url &&
@@ -43,76 +60,7 @@ const htmlSerialize = (type, element, content, children, index) => {
         </a>
       )
     }
-    // case 'heading1': {
-    //   return React.createElement(
-    //     Typography,
-    //     propsWithUniqueKey(
-    //       { variant: 'h1', gutterBottom: true, className: 'richtext h h1' },
-    //       index,
-    //     ),
-    //     children,
-    //   )
-    // }
-    // case 'heading2': {
-    //   return React.createElement(
-    //     Typography,
-    //     propsWithUniqueKey(
-    //       { variant: 'h2', gutterBottom: true, className: 'richtext h h2' },
-    //       index,
-    //     ),
-    //     children,
-    //   )
-    // }
-    // case 'heading3': {
-    //   return React.createElement(
-    //     Typography,
-    //     propsWithUniqueKey(
-    //       { variant: 'h3', gutterBottom: true, className: 'richtext h h3' },
-    //       index,
-    //     ),
-    //     children,
-    //   )
-    // }
-    // case 'heading4': {
-    //   return React.createElement(
-    //     Typography,
-    //     propsWithUniqueKey(
-    //       { variant: 'h4', gutterBottom: true, className: 'richtext h h4' },
-    //       index,
-    //     ),
-    //     children,
-    //   )
-    // }
-    // case 'heading5': {
-    //   return React.createElement(
-    //     Typography,
-    //     propsWithUniqueKey(
-    //       { variant: 'h5', gutterBottom: true, className: 'richtext h h5' },
-    //       index,
-    //     ),
-    //     children,
-    //   )
-    // }
-    // case 'heading6': {
-    //   return React.createElement(
-    //     Typography,
-    //     propsWithUniqueKey(
-    //       { variant: 'h6', gutterBottom: true, className: 'richtext h h6' },
-    //       index,
-    //     ),
-    //     children,
-    //   )
-    // }
-    // case 'paragraph': {
-    //   return React.createElement(
-    //     Typography,
-    //     propsWithUniqueKey(
-    //       { variant: 'body1', gutterBottom: true, className: 'richtext p' },
-    //       index,
-    //     ),
-    //     children,
-    //   )
-    // }
+
     default:
       return null
   }
