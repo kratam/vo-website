@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react'
 import Helmet from 'react-helmet'
@@ -8,6 +9,8 @@ import { makeStyles } from '@material-ui/styles'
 import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
 import Background from '../components/background'
+import Footer from '../components/footer'
+import Layout from '../layout/layout'
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
@@ -35,18 +38,25 @@ export default function BlogPost(props) {
       <Helmet>
         <title>{props.data.site.siteMetadata.title}</title>
       </Helmet>
-      <Background>
-        <Container maxWidth="md">
-          <div className={classes.searchContainer}>
-            <Search />
-          </div>
-        </Container>
-      </Background>
-      <Container maxWidth="md">
-        <div className={classes.cardHolder}>
-          <KBCards categories={categories} pathname="/kb" />
-        </div>
-      </Container>
+      <Layout
+        header={
+          <Background>
+            <Container maxWidth="md">
+              <div className={classes.searchContainer}>
+                <Search />
+              </div>
+            </Container>
+          </Background>
+        }
+        main={
+          <Container maxWidth="md">
+            <div className={classes.cardHolder}>
+              <KBCards categories={categories} pathname="/kb" />
+            </div>
+          </Container>
+        }
+        footer={<Footer />}
+      />
     </div>
   )
 }

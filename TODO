@@ -1,3 +1,6 @@
-general
+general:
+  - add footer with some links
+  - check why embedding fails
+
 config:
   - re-add plugin-offline

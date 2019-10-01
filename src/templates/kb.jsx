@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react'
@@ -11,7 +12,9 @@ import KBCards from '../components/KB/cardList'
 import Search from '../components/KB/search'
 import Breadcrumbs from '../components/KB/breadcrumbs'
 import Background from '../components/background'
+import Footer from '../components/footer'
 import CategoryList from '../components/KB/list'
+import Layout from '../layout/layout'
 import htmlSerializer from '../utils/htmlSerialize'
 
 const useStyles = makeStyles(theme => ({
@@ -74,79 +77,89 @@ export default function KnowledgeBaseTemplate(props) {
             category.data.name.text}`}
         />
       </Helmet>
-      <Background>
-        <Container maxWidth="md">
-          <Search />
-        </Container>
-      </Background>
-      <Container maxWidth="md">
-        <Breadcrumbs kbPathArray={kbPathArray} allCategories={allCategories} />
-        {categories.length > 0 && (
-          <>
-            <Hidden xsDown implementation="css">
-              <KBCards
-                categories={categories}
-                pathname={props.location.pathname}
-              />
-            </Hidden>
-            <Hidden smUp implementation="css">
-              <CategoryList
-                categories={categories}
-                pathname={props.location.pathname}
-              />
-            </Hidden>
-          </>
-        )}
-        {category.data.body.raw && (
-          <div className={classes.paperContainer}>
-            <Paper classes={{ root: classes.paper }}>
-              <Typography
-                variant="caption"
-                classes={{ root: classes.lastUpdate }}
-                component="div"
-              >
-                Készült: {firstUpdate}
-                {lastUpdate !== firstUpdate && (
-                  <>
-                    <br />
-                    Frissült: {lastUpdate}
-                  </>
-                )}
-              </Typography>
-              <Container maxWidth="sm" style={{ padding: 0 }}>
-                <article className={classes.body}>
-                  <header style={{ marginBottom: 30 }}>
-                    <Typography
-                      variant="h1"
-                      gutterBottom
-                      classes={{ root: classes.title }}
-                    >
-                      {category.data.name.text}
-                    </Typography>
-                    {category.data.description.text && (
-                      <Typography
-                        variant="h6"
-                        style={{
-                          lineHeight: '1.2em',
-                          color: '#ababab',
-                        }}
-                      >
-                        {category.data.description.text}
-                      </Typography>
+      <Layout
+        header={
+          <Background>
+            <Container maxWidth="md">
+              <Search />
+            </Container>
+          </Background>
+        }
+        main={
+          <Container maxWidth="md" classes={{ root: classes.kbContainer }}>
+            <Breadcrumbs
+              kbPathArray={kbPathArray}
+              allCategories={allCategories}
+            />
+            {categories.length > 0 && (
+              <>
+                <Hidden xsDown implementation="css">
+                  <KBCards
+                    categories={categories}
+                    pathname={props.location.pathname}
+                  />
+                </Hidden>
+                <Hidden smUp implementation="css">
+                  <CategoryList
+                    categories={categories}
+                    pathname={props.location.pathname}
+                  />
+                </Hidden>
+              </>
+            )}
+            {category.data.body.raw && (
+              <div className={classes.paperContainer}>
+                <Paper classes={{ root: classes.paper }}>
+                  <Typography
+                    variant="caption"
+                    classes={{ root: classes.lastUpdate }}
+                    component="div"
+                  >
+                    Készült: {firstUpdate}
+                    {lastUpdate !== firstUpdate && (
+                      <>
+                        <br />
+                        Frissült: {lastUpdate}
+                      </>
                     )}
-                  </header>
-                  <div className="richtext">
-                    <RichText
-                      render={category.data.body.raw}
-                      htmlSerializer={htmlSerializer}
-                    />
-                  </div>
-                </article>
-              </Container>
-            </Paper>
-          </div>
-        )}
-      </Container>
+                  </Typography>
+                  <Container maxWidth="sm" style={{ padding: 0 }}>
+                    <article className={classes.body}>
+                      <header style={{ marginBottom: 30 }}>
+                        <Typography
+                          variant="h1"
+                          gutterBottom
+                          classes={{ root: classes.title }}
+                        >
+                          {category.data.name.text}
+                        </Typography>
+                        {category.data.description.text && (
+                          <Typography
+                            variant="h6"
+                            style={{
+                              lineHeight: '1.2em',
+                              color: '#ababab',
+                            }}
+                          >
+                            {category.data.description.text}
+                          </Typography>
+                        )}
+                      </header>
+                      <div className="richtext">
+                        <RichText
+                          render={category.data.body.raw}
+                          htmlSerializer={htmlSerializer}
+                        />
+                      </div>
+                    </article>
+                  </Container>
+                </Paper>
+              </div>
+            )}
+          </Container>
+        }
+        footer={<Footer />}
+      />
     </div>
   )
 }
