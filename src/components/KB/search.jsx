@@ -38,7 +38,7 @@ const Input = connectSearchBox(({ refine }) => {
     <Paper classes={{ root: classes.paper }}>
       <SearchIcon classes={{ root: classes.icon }} />
       <InputBase
-        autoFocus={size.width > 500 ? true : undefined}
+        autoFocus={size.width > 800 ? true : undefined}
         classes={{ root: classes.input }}
         placeholder="kezdj el gépelni a kereséshez..."
         inputProps={{ 'aria-label': 'keresés a tudásbázisban' }}
