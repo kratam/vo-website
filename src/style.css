@@ -15,6 +15,17 @@ a:visited {
   text-decoration: none;
 }
 
+/* commento */
+
+.commento-logo-container {
+  display: none;
+}
+
+/* div.commento-comments>div>div.commento-card {
+  border-right: 1px solid #f0f0f0 !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+} */
+
 /* richText stuff for kb */
 
 .rt-callout {

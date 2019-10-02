@@ -13,11 +13,16 @@ import Breadcrumbs from '../components/KB/breadcrumbs'
 import Background from '../components/background'
 import Footer from '../components/footer'
 import CategoryList from '../components/KB/list'
+import Comments from '../components/comments'
 import Layout from '../layout/layout'
 
 export default function KnowledgeBaseTemplate(props) {
   const category = get(props, 'data.category')
   const categories = get(props, 'data.subCategories.edges', [])
+  const fullPath = `${get(props, 'data.site.siteMetadata.siteUrl')}/${get(
+    props,
+    'pageContext.mypath',
+  )}`
   const allCategories = get(props, 'data.allCategories.edges', [])
   const kbPathArray = get(props, 'pageContext.mypath').split('/')
   const seoPath = kbPathArray
@@ -68,7 +73,16 @@ export default function KnowledgeBaseTemplate(props) {
                 </Hidden>
               </>
             )}
-            {category.data.body.raw && <Article {...props} />}
+            {category.data.body.raw && (
+              <>
+                <Article {...props} />
+                <Comments
+                  url={fullPath}
+                  identifier={props.pageContext.mypath}
+                  title={category.data.name.text}
+                />
+              </>
+            )}
           </Container>
         }
         footer={<Footer />}
@@ -82,6 +96,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        siteUrl
       }
     }
     category: prismicKbCategory(uid: { eq: $uid }) {
