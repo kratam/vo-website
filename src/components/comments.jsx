@@ -1,14 +1,10 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 // import { Disqus /*  CommentCount */ } from 'gatsby-plugin-disqus'
 import { Paper, Container, Typography } from '@material-ui/core'
 
 export default function Comments() {
   return (
     <>
-      <Helmet>
-        <script defer src="https://cdn.commento.io/js/commento.js" />
-      </Helmet>
       <Paper>
         <Container maxWidth="md" style={{ paddingTop: 20, paddingBottom: 20 }}>
           <Typography variant="h4" gutterBottom>

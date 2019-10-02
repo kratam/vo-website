@@ -12,6 +12,7 @@ export default function TopLayout({ children, theme }) {
       <Viewport />
       <Helmet>
         <meta name="description" content={config.siteDescription} />
+        <script defer src="https://cdn.commento.io/js/commento.js" />
       </Helmet>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
