@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import sortBy from 'lodash/sortBy'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
@@ -25,3 +26,31 @@ export default function CardList(props) {
     </Grid>
   )
 }
+
+export const categoriesFragment = graphql`
+  fragment subCategoriesFragment on PrismicKbCategoryConnection {
+    edges {
+      node {
+        uid
+        data {
+          order
+          cover {
+            localFile {
+              childImageSharp {
+                fixed(width: 270) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+          }
+          name {
+            text
+          }
+          description {
+            text
+          }
+        }
+      }
+    }
+  }
+`

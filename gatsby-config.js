@@ -106,14 +106,7 @@ module.exports = {
         siteUrl: `https://vendegkonyv.online`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-netlify',
-      options: {
-        headers: {
-          '/*': ['Basic-Auth: gg:vendegkonyv'],
-        },
-      },
-    },
+    'gatsby-plugin-netlify',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',

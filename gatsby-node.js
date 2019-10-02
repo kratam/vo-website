@@ -80,6 +80,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const kbCategory = path.resolve('src/templates/kb.jsx')
 
+  // add the full parent category document to the data property
   const withParent = node => {
     if (_.get(node, 'data.parent_category')) {
       // eslint-disable-next-line camelcase
@@ -90,6 +91,7 @@ exports.createPages = async ({ graphql, actions }) => {
     return node
   }
 
+  // construct a path for a single category using the resolved parents (using withParent)
   const constructPath = (node, _path) => {
     if (_.get(node, 'data.parent_category')) {
       // eslint-disable-next-line no-param-reassign

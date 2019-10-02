@@ -85,54 +85,7 @@ export const pageQuery = graphql`
       }
     }
     category: prismicKbCategory(uid: { eq: $uid }) {
-      first_publication_date
-      last_publication_date
-      data {
-        name {
-          text
-        }
-        description {
-          text
-        }
-        body {
-          raw {
-            type
-            text
-            spans {
-              start
-              end
-              type
-              data {
-                link_type
-                url
-                target
-                label
-              }
-            }
-            oembed {
-              type
-              embed_url
-              title
-              provider_name
-              thumbnail_url
-              author_url
-              version
-              provider_url
-              thumbnail_height
-              thumbnail_width
-              width
-              height
-              html
-              author_name
-            }
-            url
-            dimensions {
-              width
-              height
-            }
-          }
-        }
-      }
+      ...kbArticleFragment
     }
     allCategories: allPrismicKbCategory {
       edges {
@@ -149,29 +102,7 @@ export const pageQuery = graphql`
     subCategories: allPrismicKbCategory(
       filter: { data: { parent_category: { uid: { eq: $uid } } } }
     ) {
-      edges {
-        node {
-          uid
-          data {
-            order
-            cover {
-              localFile {
-                childImageSharp {
-                  fixed(width: 270) {
-                    ...GatsbyImageSharpFixed
-                  }
-                }
-              }
-            }
-            name {
-              text
-            }
-            description {
-              text
-            }
-          }
-        }
-      }
+      ...subCategoriesFragment
     }
   }
 `

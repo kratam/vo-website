@@ -70,28 +70,12 @@ export const pageQuery = graphql`
     allPrismicKbCategory(
       filter: { data: { parent_category: { uid: { eq: null } } } }
     ) {
+      ...subCategoriesFragment
       edges {
         node {
-          uid
           data {
             parent_category {
               uid
-            }
-            order
-            cover {
-              localFile {
-                childImageSharp {
-                  fixed(width: 270) {
-                    ...GatsbyImageSharpFixed
-                  }
-                }
-              }
-            }
-            name {
-              text
-            }
-            description {
-              text
             }
           }
         }

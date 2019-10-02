@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
+import { graphql } from 'gatsby'
 import { Paper, Container, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import get from 'lodash/get'
@@ -110,3 +111,56 @@ export default function Article(props) {
     </div>
   )
 }
+
+export const articleFragment = graphql`
+  fragment kbArticleFragment on PrismicKbCategory {
+    first_publication_date
+    last_publication_date
+    data {
+      name {
+        text
+      }
+      description {
+        text
+      }
+      body {
+        raw {
+          type
+          text
+          spans {
+            start
+            end
+            type
+            data {
+              link_type
+              url
+              target
+              label
+            }
+          }
+          oembed {
+            type
+            embed_url
+            title
+            provider_name
+            thumbnail_url
+            author_url
+            version
+            provider_url
+            thumbnail_height
+            thumbnail_width
+            width
+            height
+            html
+            author_name
+          }
+          url
+          dimensions {
+            width
+            height
+          }
+        }
+      }
+    }
+  }
+`
