@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Paper, Container, Typography } from '@material-ui/core'
+import { Paper, Container, Typography, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import get from 'lodash/get'
 import { RichText } from 'prismic-reactjs'
@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
   },
   [theme.breakpoints.up('md')]: {
     marginTop: 12,
+  },
+  forumBanner: {
+    paddingTop: theme.spacing(3),
   },
 }))
 
@@ -106,6 +109,20 @@ export default function Article(props) {
               />
             </div>
           </article>
+          <Divider />
+          <Typography variant="body1" classes={{ root: classes.forumBanner }}>
+            Maradtak kérdéseid? Pontosítanád vagy teljesen másként gondolod?
+            <br />
+            Beszéljük meg a{' '}
+            <a
+              href="https://forum.vendegkonyv.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'underline' }}
+            >
+              Rövidtávú Szálláskiadási Közösség Fórumán!
+            </a>
+          </Typography>
         </Container>
       </Paper>
     </div>

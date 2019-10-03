@@ -4,14 +4,12 @@ import { Paper, Container, Typography } from '@material-ui/core'
 
 export default function Comments(props) {
   const { url: discourseEmbedUrl } = props
-  const hasWindow = typeof window !== 'undefined'
-  if (hasWindow)
+  const addDiscourse = () => {
+    if (typeof window === 'undefined') return
     window.DiscourseEmbed = {
       discourseUrl: 'https://forum.vendegkonyv.online/',
       discourseEmbedUrl,
     }
-  const addDiscourse = () => {
-    if (!hasWindow) return
     const d = document.createElement('script')
     d.type = 'text/javascript'
     d.async = true
