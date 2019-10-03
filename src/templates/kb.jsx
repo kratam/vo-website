@@ -19,7 +19,7 @@ import Layout from '../layout/layout'
 export default function KnowledgeBaseTemplate(props) {
   const category = get(props, 'data.category')
   const categories = get(props, 'data.subCategories.edges', [])
-  const fullPath = `${get(props, 'data.site.siteMetadata.siteUrl')}/kb/${get(
+  const fullPath = `${get(props, 'data.site.siteMetadata.siteUrl')}kb/${get(
     props,
     'pageContext.mypath',
   )}`

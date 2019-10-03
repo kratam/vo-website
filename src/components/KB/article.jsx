@@ -78,7 +78,7 @@ export default function Article(props) {
           )}
         </Typography>
         <Container maxWidth="sm" style={{ padding: 0 }}>
-          <article className={classes.body}>
+          <article className={`${classes.body} kb-article`}>
             <header style={{ marginBottom: 30 }}>
               <Typography
                 variant="h1"

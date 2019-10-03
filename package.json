@@ -20,8 +20,7 @@
     "gatsby-plugin-algolia": "^0.3.4",
     "gatsby-plugin-canonical-urls": "^2.1.10",
     "gatsby-plugin-catch-links": "^2.0.13",
-    "gatsby-plugin-disqus": "^1.1.2",
-    "gatsby-plugin-feed": "^2.2.0",
+    "gatsby-plugin-feed": "^2.3.15",
     "gatsby-plugin-google-analytics": "^2.0.19",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-lodash": "^3.0.5",
@@ -57,7 +56,8 @@
     "react-instantsearch-dom": "^5.7.0",
     "react-share": "^2.4.0",
     "react-twitter-widgets": "^1.7.1",
-    "url-join": "^4.0.0"
+    "url-join": "^4.0.0",
+    "use-timeout": "^1.1.0"
   },
   "devDependencies": {
     "cli-glob": "^0.1.0",
