@@ -117,6 +117,30 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
+  const footerArticle = path.resolve('src/templates/footer-article.jsx')
+
+  const markdowns = await graphql(`
+    {
+      allMarkdownRemark(limit: 1000) {
+        edges {
+          node {
+            frontmatter {
+              path
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  markdowns.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    createPage({
+      path: node.frontmatter.path,
+      component: footerArticle,
+      context: {}, // additional data can be passed via context
+    })
+  })
+
   const blogPost = path.resolve('src/templates/blogpost.jsx')
 
   const prismicPosts = await graphql(

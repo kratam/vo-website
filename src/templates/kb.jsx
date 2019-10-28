@@ -13,7 +13,6 @@ import Breadcrumbs from '../components/KB/breadcrumbs'
 import Background from '../components/background'
 import Footer from '../components/footer'
 import CategoryList from '../components/KB/list'
-// import Comments from '../components/comments'
 import Layout from '../layout/layout'
 
 export default function KnowledgeBaseTemplate(props) {

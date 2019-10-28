@@ -11,6 +11,13 @@ const useStyles = makeStyles(() => ({
     marginTop: 6,
     marginBottom: 6,
   },
+  link: {
+    padding: 4,
+  },
+  separator: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
 }))
 
 const Breadcrumbs = ({ kbPathArray, allCategories }) => {
@@ -27,18 +34,20 @@ const Breadcrumbs = ({ kbPathArray, allCategories }) => {
     <MUIBreadCrumbs
       maxItems={size.width < 400 ? 3 : undefined}
       aria-label="breadcrumb"
-      classes={{ root: classes.root }}
+      classes={{ root: classes.root, separator: classes.separator }}
       component="div"
     >
-      <Link to="/">
-        <Typography variant="caption">Főoldal</Typography>
-      </Link>
-      {kbPathArray.map((path, i) => (
-        <Link key={path} to={getPath(i)}>
-          <Typography variant="caption">
-            {allCategories.find(c => c.node.uid === path).node.data.name.text}
-          </Typography>
+      <Typography variant="caption" component="div">
+        <Link to="/" className={classes.link}>
+          Főoldal
         </Link>
+      </Typography>
+      {kbPathArray.map((path, i) => (
+        <Typography key={path} variant="caption" component="div">
+          <Link to={getPath(i)} className={classes.link}>
+            {allCategories.find(c => c.node.uid === path).node.data.name.text}
+          </Link>
+        </Typography>
       ))}
     </MUIBreadCrumbs>
   )

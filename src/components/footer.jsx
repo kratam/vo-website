@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { Container, Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
   item: {
-    color: theme.palette.grey[200],
+    color: theme.palette.grey[100],
   },
 }))
 
@@ -31,37 +32,22 @@ export default function Footer() {
     <div className={classes.root}>
       <Container maxWidth="md">
         <Grid container classes={{ root: classes.gridContainer }}>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={6}>
             <Typography variant="h6" classes={{ root: classes.title }}>
               Rólunk
             </Typography>
             <Typography variant="body1" classes={{ root: classes.item }}>
-              Kik vagyunk?
-            </Typography>
-            <Typography variant="body1" classes={{ root: classes.item }}>
-              Miért csináljuk ezt az oldalt?
+              <Link to="/about">Kik vagyunk, mi ez és miért csináljuk?</Link>
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={6}>
             <Typography variant="h6" classes={{ root: classes.title }}>
-              A tudásbázisról
+              Online Vendégkönyv
             </Typography>
             <Typography variant="body1" classes={{ root: classes.item }}>
-              Kik vagyunk?
-            </Typography>
-            <Typography variant="body1" classes={{ root: classes.item }}>
-              Miért csináljuk ezt az oldalt?
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Typography variant="h6" classes={{ root: classes.title }}>
-              Az alkalmazásról
-            </Typography>
-            <Typography variant="body1" classes={{ root: classes.item }}>
-              Kik vagyunk?
-            </Typography>
-            <Typography variant="body1" classes={{ root: classes.item }}>
-              Miért csináljuk ezt az oldalt?
+              <Link to="/onve">
+                NTAK kompatibilis szálláshelykezelő szoftver
+              </Link>
             </Typography>
           </Grid>
         </Grid>

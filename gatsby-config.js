@@ -61,8 +61,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'assets',
-        path: `${__dirname}/static/`,
+        name: 'footer-articles',
+        path: `${__dirname}/static/footer`,
       },
     },
     {
