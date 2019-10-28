@@ -9,7 +9,7 @@ Mi vagyunk a [GuestGuru](https://guest.guru/) és rövidtávú lakásüzemeltet�
 
 Munkánk során rengeteg kérdéssel és problémával szembesültünk, mivel az “airbnb-zéssel” kapcsolatos információk sehol nincsenek még rendszerezetten összegyűjtve, illetve sok kérdésben megoszlanak a vélemények. Most egy side-projektként létrehoztunk egy olyan tudásbázist, ahol ezekre a kérdésekre próbálunk minél jobb válaszokat adni.
 
-A **projektet közösségi projektnek szánjuk**, biztos hogy mi sem tudjuk mindenre a választ. Ezért várjuk olyan lelkes emberek jelentkezését, akik szívesen kifejtenének újabb témákat, vagy a meglévőkhöz írnának még. Természetesen mindent névvel együtt adunk közre, szóval a te nevedhez kötődik majd a cikk. Ez esetben írj nekünk a hello@vendegkonyv.online címre.
+A **projektet közösségi projektnek szánjuk**, biztos hogy mi sem tudjuk mindenre a választ. Ezért várjuk olyan lelkes emberek jelentkezését, akik szívesen kifejtenének újabb témákat, vagy a meglévőkhöz írnának még. Természetesen mindent névvel együtt adunk közre, szóval a te nevedhez kötődik majd a cikk. Ez esetben írj nekünk a [hello@vendegkonyv.online](mailto:hello@vendegkonyv.online) címre.
 
 A tudásbázishoz kapcsolódik egy fórum is, ahol különböző témakörökben cseveghettek, és tagelhetitek a megszólalást, hogy jobban kereshető legyen az utókor számára. Szintén itt van lehetőség a tudásbázis vitatottabb témáinak megbeszélésére. https://forum.vendegkonyv.online/
 
@@ -21,4 +21,4 @@ Az általános megállapítások országos szinten igazak, de a helyi körülmé
 ## Jogi kizárás
 
 Az oldalon közölt információk a mi sokéves tapasztalatunkból erednek. Igyekeztünk mindennek a legalaposabban utánamenni, de természetesen a változásokat és módosításokat nem tudjuk mindig azonnal frissíteni. Ha ilyenről van tudomásod, szólj nekünk!
-Téves vagy hiányos információkért való közvetlen vagy közvetett károkért felelősséget nem vállalunk, adott szakterületi kérdésben kérd ki profi véleményét!
+Téves vagy hiányos információkból eredő közvetlen vagy közvetett károkért felelősséget nem vállalunk, adott szakterületi kérdésben kérd ki profi véleményét!

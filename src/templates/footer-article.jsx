@@ -15,6 +15,11 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
+  article: {
+    '& a': {
+      color: '#1976d2',
+    },
+  },
 }))
 
 export default function FooterArticle({ data }) {
@@ -41,7 +46,7 @@ export default function FooterArticle({ data }) {
                 <div>
                   <Typography variant="h1">{frontmatter.title}</Typography>
                   <div
-                    className="blog-post-content"
+                    className={classes.article}
                     dangerouslySetInnerHTML={{ __html: html }}
                   />
                 </div>
