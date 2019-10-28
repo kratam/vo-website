@@ -1,6 +1,6 @@
 ---
 path: '/onve'
-title: 'Mi az Online Vendégkönyv (OnVe)?'
+title: 'Mi az Online Vendégkönyv?'
 ---
 
 ## Mi az az Online Vendégkönyv (OnVe)?
