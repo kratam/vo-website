@@ -1,7 +1,9 @@
+/* eslint-disable spaced-comment */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Paper, Container, Typography, Divider } from '@material-ui/core'
+import { Paper, Container, Typography, Grid } from '@material-ui/core'
+import Img from 'gatsby-image/withIEPolyfill'
 import { makeStyles } from '@material-ui/styles'
 import get from 'lodash/get'
 import { RichText } from 'prismic-reactjs'
@@ -24,9 +26,15 @@ const useStyles = makeStyles(theme => ({
     marginTop: 20,
     marginBottom: 4,
   },
+  headerGrid: {
+    paddingTop: theme.spacing(2),
+  },
+  author: {
+    color: theme.palette.grey[500],
+  },
   lastUpdate: {
-    paddingTop: 8,
-    marginRight: -12,
+    // paddingTop: 8,
+    // marginRight: -12,
     textAlign: 'right',
     lineHeight: '110%',
     color: theme.palette.grey[500],
@@ -63,23 +71,54 @@ export default function Article(props) {
   const lastUpdate = formatDate(
     new Date(parseDate(category.last_publication_date)),
   )
-
+  const author = get(category, 'data.author.document[0]')
+  const authorAvatar = get(
+    author || {},
+    'data.avatar.localFile.childImageSharp.fixed',
+  )
   return (
     <div className={classes.paperContainer}>
       <Paper classes={{ root: classes.paper }}>
-        <Typography
-          variant="caption"
-          classes={{ root: classes.lastUpdate }}
-          component="div"
+        <Grid
+          container
+          justify="space-between"
+          classes={{ root: classes.headerGrid }}
         >
-          Készült: {firstUpdate}
-          {lastUpdate !== firstUpdate && (
+          {author && (
             <>
-              <br />
-              Frissült: {lastUpdate}
+              <Grid item style={{ paddingRight: 5 }}>
+                <Img fixed={authorAvatar} />
+              </Grid>
+              <Grid item style={{ display: 'flex', alignItems: 'center' }}>
+                <Typography
+                  style={{ lineHeight: '100%' }}
+                  variant="caption"
+                  classes={{ root: classes.author }}
+                >
+                  Szerző:
+                  <br />
+                  {author.data.name}
+                </Typography>
+              </Grid>
             </>
           )}
-        </Typography>
+          <Grid item style={{ flexGrow: 1 }}>
+            <Typography
+              variant="caption"
+              classes={{ root: classes.lastUpdate }}
+              component="div"
+            >
+              Készült: {firstUpdate}
+              {lastUpdate !== firstUpdate && (
+                <>
+                  <br />
+                  Frissült: {lastUpdate}
+                </>
+              )}
+            </Typography>
+          </Grid>
+        </Grid>
+
         <Container maxWidth="sm" style={{ padding: 0 }}>
           <article className={`${classes.body} kb-article`}>
             <header style={{ marginBottom: 30 }}>
@@ -109,6 +148,7 @@ export default function Article(props) {
               />
             </div>
           </article>
+          {/*
           <Divider />
           <Typography variant="body1" classes={{ root: classes.forumBanner }}>
             Maradtak kérdéseid? Pontosítanád vagy teljesen másként gondolod?
@@ -122,7 +162,7 @@ export default function Article(props) {
             >
               Rövidtávú Szálláskiadási Közösség Fórumán!
             </a>
-          </Typography>
+          </Typography>*/}
         </Container>
       </Paper>
     </div>
@@ -134,6 +174,24 @@ export const articleFragment = graphql`
     first_publication_date
     last_publication_date
     data {
+      author {
+        document {
+          ... on PrismicAuthor {
+            data {
+              name
+              avatar {
+                localFile {
+                  childImageSharp {
+                    fixed(width: 40) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       name {
         text
       }

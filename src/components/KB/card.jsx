@@ -47,6 +47,8 @@ export default function KBCard({ data, uid, pathname }) {
   `)
   const isRootCategory = get(data, 'parent_category') === null
   const classes = useStyles({ isRootCategory })
+  const pathnameWithSlash =
+    pathname.slice(-1) === '/' ? pathname : `${pathname}/`
   // const hasImg = get(data, 'cover.localFile.childImageSharp.fixed', false)
   return (
     <Card
@@ -55,7 +57,7 @@ export default function KBCard({ data, uid, pathname }) {
       onMouseOver={() => setRaised(true)}
       onMouseOut={() => setRaised(false)}
     >
-      <Link to={`${pathname}/${uid}`}>
+      <Link to={`${pathnameWithSlash}${uid}`}>
         <div className={classes.actionArea}>
           {isRootCategory && (
             <Img

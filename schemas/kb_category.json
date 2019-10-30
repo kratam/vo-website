@@ -8,6 +8,14 @@
         "label": "Parent category"
       }
     },
+    "author": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["author"],
+        "label": "author"
+      }
+    },
     "name": {
       "type": "StructuredText",
       "config": {

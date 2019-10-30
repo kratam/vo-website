@@ -47,6 +47,8 @@ export default function Footer() {
             <Typography variant="body1" classes={{ root: classes.item }}>
               <Link to="/onve">
                 NTAK kompatibilis szálláshelykezelő szoftver
+                <br />
+                próbáld ki az ingyenes 1 hónapot!
               </Link>
             </Typography>
           </Grid>

@@ -1,11 +1,11 @@
 const config = {
-  siteTitle: 'Online Vendégkönyv - Próbáld ki az ingyenes 1 hónapot!', // Site title.
+  siteTitle: 'Online Vendégkönyv', // Site title.
   siteTitleShort: 'OnVe', // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
-  siteTitleAlt: 'NTAK kompatibilis szálláshelykezelő szoftver', // Alternative site title for SEO.
+  siteTitleAlt: 'Közösségi Airbnb Tudásbázis', // Alternative site title for SEO.
   // siteLogo: '/logos/logo-1024.png', // Logo used for SEO and manifest.
   siteUrl: 'https://vendegkonyv.online', // Domain of your website without pathPrefix.
   pathPrefix: '', // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
-  siteDescription: 'NTAK kompatibilis szálláshelykezelő szoftver', // Website description used for RSS feeds/meta description tag.
+  siteDescription: 'Közösségi Airbnb Tudásbázis', // Website description used for RSS feeds/meta description tag.
   themeColor: '#fec604', // Used for setting manifest and progress theme colors.
   backgroundColor: '#e0e0e0', // Used for setting manifest background color.
   googleAnalyticsID: 'UA-124841508-4',

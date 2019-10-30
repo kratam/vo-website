@@ -40,6 +40,7 @@ module.exports = {
         schemas: {
           post: require('./schemas/post.json'),
           kbCategory: require('./schemas/kb_category.json'),
+          author: require('./schemas/author.json'),
         },
         lang: '*',
         shouldNormalizeImage: (/* { node, key, value } */) => {
