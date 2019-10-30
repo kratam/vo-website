@@ -1,6 +1,6 @@
 const config = {
-  siteTitle: 'Online Vendégkönyv és Airbnb kisokos', // Site title.
-  siteTitleShort: 'Vendégkönyv', // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
+  siteTitle: 'Online Vendégkönyv - Próbáld ki az ingyenes 1 hónapot!', // Site title.
+  siteTitleShort: 'OnVe', // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
   siteTitleAlt: 'NTAK kompatibilis szálláshelykezelő szoftver', // Alternative site title for SEO.
   // siteLogo: '/logos/logo-1024.png', // Logo used for SEO and manifest.
   siteUrl: 'https://vendegkonyv.online', // Domain of your website without pathPrefix.

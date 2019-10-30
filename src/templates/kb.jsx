@@ -30,6 +30,8 @@ export default function KnowledgeBaseTemplate(props) {
     )
     .join(' > ')
 
+  const description = category.data.description.text
+
   return (
     <div>
       <Helmet>
@@ -38,8 +40,7 @@ export default function KnowledgeBaseTemplate(props) {
         </title>
         <meta
           name="description"
-          content={`${seoPath} > ${category.data.description.text ||
-            category.data.name.text}`}
+          content={`${seoPath}${description ? ` > ${description}` : ''}`}
         />
       </Helmet>
       <Layout
