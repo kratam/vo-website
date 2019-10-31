@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import { Breadcrumbs as MUIBreadCrumbs, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import times from 'lodash/times'
-import useWindowSize from '../../utils/hooks/useWindowSize'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -22,7 +21,6 @@ const useStyles = makeStyles(() => ({
 
 const Breadcrumbs = ({ kbPathArray, allCategories }) => {
   const classes = useStyles()
-  const size = useWindowSize()
   const getPath = i => {
     let ret = '/kb'
     times(i + 1, n => {
@@ -32,7 +30,6 @@ const Breadcrumbs = ({ kbPathArray, allCategories }) => {
   }
   return (
     <MUIBreadCrumbs
-      maxItems={size.width < 400 ? 3 : undefined}
       aria-label="breadcrumb"
       classes={{ root: classes.root, separator: classes.separator }}
       component="div"
