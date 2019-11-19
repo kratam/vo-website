@@ -43,7 +43,7 @@ export default function BlogPost(props) {
           <Background>
             <Container maxWidth="md">
               <div className={classes.searchContainer}>
-                <Search />
+                <Search isMainPage />
               </div>
             </Container>
           </Background>

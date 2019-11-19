@@ -98,11 +98,12 @@ const useStyles = makeStyles(() => ({
   headline: {
     color: '#fff',
     textAlign: 'center',
+    textDecoration: props => (props.isMainPage ? undefined : 'underline'),
   },
 }))
 
-export default function Search() {
-  const classes = useStyles()
+export default function Search({ isMainPage }) {
+  const classes = useStyles({ isMainPage })
   const algoliaClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
     process.env.GATSBY_ALGOLIA_SEARCH_KEY,
@@ -127,13 +128,15 @@ export default function Search() {
 
   return (
     <Container maxWidth="sm" classes={{ root: classes.container }}>
-      <Typography
-        classes={{ root: classes.headline }}
-        variant="h6"
-        gutterBottom
-      >
-        A rövidtávú szálláshelykiadás tudásbázisa
-      </Typography>
+      <Link to="/" style={{ cursor: 'pointer' }}>
+        <Typography
+          classes={{ root: classes.headline }}
+          variant="h6"
+          gutterBottom
+        >
+          A rövidtávú szálláshelykiadás tudásbázisa
+        </Typography>
+      </Link>
       <InstantSearch searchClient={searchClient} indexName="knowledgebase">
         <Input />
         <Results />
