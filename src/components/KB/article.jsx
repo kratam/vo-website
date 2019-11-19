@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Paper, Container, Typography, Grid } from '@material-ui/core'
+import { Paper, Container, Typography, Grid, Divider } from '@material-ui/core'
 import Img from 'gatsby-image/withIEPolyfill'
 import { makeStyles } from '@material-ui/styles'
 import get from 'lodash/get'
@@ -148,21 +148,19 @@ export default function Article(props) {
               />
             </div>
           </article>
-          {/*
           <Divider />
           <Typography variant="body1" classes={{ root: classes.forumBanner }}>
-            Maradtak kérdéseid? Pontosítanád vagy teljesen másként gondolod?
-            <br />
-            Beszéljük meg a{' '}
+            Ez egy <b>közösségi projekt</b>, legyél te is szerkesztő!{' '}
             <a
-              href="https://forum.vendegkonyv.online"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:hello@vendegkonyv.online"
               style={{ textDecoration: 'underline' }}
             >
-              Rövidtávú Szálláskiadási Közösség Fórumán!
-            </a>
-          </Typography>*/}
+              Küldj nekünk
+            </a>{' '}
+            új témát, frissítést vagy bármit, ami a tartalommal kapcsolatban
+            eszedbe jut. Az új témák a te neveddel jelennek meg, a meglévőknél
+            pedig megemlítünk, mint közreműködő (ha szeretnéd).
+          </Typography>
         </Container>
       </Paper>
     </div>
